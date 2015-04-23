@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
@@ -27,17 +28,23 @@ namespace ImageMosaic
         public IDictionary<string, Color> ParseAllImages()
         {
             int counter = 1;
-            Parallel.ForEach(imagesNames, name =>
+
+            Parallel.For(0, imagesNames.Length, i=>
             {
-                Color color = _getImageColor(name);
+                Color color = _getImageColor(imagesNames[i]);
                 if (color != Color.Transparent)
                 {
-                    ColorSet.Add(name, color);
+                    ColorSet.Add(imagesNames[i], color);
+                    imagesNames[i] = "";
                     Console.Clear();
-                    Console.WriteLine("Images Processed: " + counter + "/" + imagesNames.Length);
+                    Console.WriteLine("Images Processed: " + counter + " tiles of "+ imagesNames.Length);
                 }
+                
                 counter++;
+                if(counter % 100 == 0)//Force the garbage collector to dispose of unmanaged resources
+                    System.GC.Collect();
             });
+            System.GC.Collect();
             return ColorSet;
         }
 
@@ -52,8 +59,6 @@ namespace ImageMosaic
             {
                 ImageProcessor processor = new ImageProcessor(name);
                 Color color = processor.GetDominantColor();
-                processor.image.Dispose();
-                processor = null;
                 return color;
             }
             catch (Exception)

@@ -14,7 +14,7 @@ namespace ImageMosaic
             ReferenceImagesParser imageParser = new ReferenceImagesParser("ReferenceImages");
             imageParser.ParseAllImages();
             MosaicGenerator generator = new MosaicGenerator("Test2.jpg", "TestMosaic.png", imageParser);
-            generator.GenerateImageMosaic(10);
+            generator.GenerateImageMosaic(10,10);
         }
     }
 }

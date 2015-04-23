@@ -51,6 +51,7 @@ namespace ImageMosaic
             squaresHeight = squareTam;
         }
 
+
         /// <summary>
         /// Returns the dominant color of the image
         /// </summary>
@@ -142,5 +143,8 @@ namespace ImageMosaic
 
             return brushes;
         }
+
+
+
     }
 }

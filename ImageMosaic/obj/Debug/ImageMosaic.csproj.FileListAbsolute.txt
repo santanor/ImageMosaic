@@ -1,7 +1,6 @@
 C:\Users\joseantonio\Documents\ImageMosaic\ImageMosaic\bin\Debug\ImageMosaic.exe.config
 C:\Users\joseantonio\Documents\ImageMosaic\ImageMosaic\bin\Debug\ImageMosaic.exe
 C:\Users\joseantonio\Documents\ImageMosaic\ImageMosaic\bin\Debug\ImageMosaic.pdb
-C:\Users\joseantonio\Documents\ImageMosaic\ImageMosaic\obj\Debug\ImageMosaic.csprojResolveAssemblyReference.cache
 C:\Users\joseantonio\Documents\ImageMosaic\ImageMosaic\obj\Debug\ImageMosaic.exe
 C:\Users\joseantonio\Documents\ImageMosaic\ImageMosaic\obj\Debug\ImageMosaic.pdb
 E:\OneDrive\ImageMosaic\ImageMosaic\bin\Debug\ImageMosaic.exe.config

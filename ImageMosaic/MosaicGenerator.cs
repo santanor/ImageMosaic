@@ -22,16 +22,16 @@ namespace ImageMosaic
             this.imagesParser = imagesParser;
         }
 
-        public void GenerateImageMosaic(int tileSize)
+        public void GenerateImageMosaic(int tileSize, int dstImageMultiplicator)
         {
             ImageProcessor processor = new ImageProcessor(inputImagePath, tileSize);
             Color[,] imageColors = processor.GetColorMatrix();
-            Bitmap exportImage = new Bitmap(processor.image.Width, processor.image.Height);
+            Bitmap exportImage = new Bitmap(processor.image.Width * dstImageMultiplicator, processor.image.Height * dstImageMultiplicator);
             Graphics graphics = Graphics.FromImage(exportImage);
             int tilesWidth = processor.image.Width / tileSize;
             int tilesHeight = processor.image.Height / tileSize;
-            int tileSizeWidth = tileSize;
-            int tileSizeHeight = tileSize;
+            int tileSizeWidth = tileSize * dstImageMultiplicator;
+            int tileSizeHeight = tileSize * dstImageMultiplicator;
             int tileCounter = 1;
             IDictionary<string, Image> imagesCache = new Dictionary<string, Image>();
             for (int i = 0; i < tilesHeight; i++)
@@ -45,7 +45,7 @@ namespace ImageMosaic
                     Rectangle dstRect = new Rectangle(j*tileSizeWidth, i* tileSizeHeight, tileSizeWidth, tileSizeHeight);
                     graphics.DrawImage(imagesCache[imageName], dstRect, srcRect, GraphicsUnit.Pixel);
                     Console.Clear();
-                    Console.WriteLine("Processed " + tileCounter + "tiles of " + tilesHeight * tilesWidth);
+                    Console.WriteLine("Processed " + tileCounter + " tiles of " + tilesHeight * tilesWidth);
                     tileCounter++;
                 }
             }
