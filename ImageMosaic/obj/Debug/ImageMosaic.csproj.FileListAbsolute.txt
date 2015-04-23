@@ -9,3 +9,9 @@ E:\OneDrive\ImageMosaic\ImageMosaic\obj\Debug\ImageMosaic.pdb
 E:\OneDrive\ImageMosaic\ImageMosaic\bin\Debug\ImageMosaic.exe
 E:\OneDrive\ImageMosaic\ImageMosaic\bin\Debug\ImageMosaic.pdb
 E:\OneDrive\ImageMosaic\ImageMosaic\obj\Debug\ImageMosaic.csprojResolveAssemblyReference.cache
+C:\Users\jose_\Documents\ImageMosaic\ImageMosaic\bin\Debug\ImageMosaic.exe.config
+C:\Users\jose_\Documents\ImageMosaic\ImageMosaic\bin\Debug\ImageMosaic.exe
+C:\Users\jose_\Documents\ImageMosaic\ImageMosaic\bin\Debug\ImageMosaic.pdb
+C:\Users\jose_\Documents\ImageMosaic\ImageMosaic\obj\Debug\ImageMosaic.csprojResolveAssemblyReference.cache
+C:\Users\jose_\Documents\ImageMosaic\ImageMosaic\obj\Debug\ImageMosaic.exe
+C:\Users\jose_\Documents\ImageMosaic\ImageMosaic\obj\Debug\ImageMosaic.pdb

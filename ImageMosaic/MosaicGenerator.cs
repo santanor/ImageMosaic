@@ -14,6 +14,7 @@ namespace ImageMosaic
         private string inputImagePath;
         private string outputImagePath;
         private ReferenceImagesParser imagesParser;
+        private Object thisLock = new Object();
 
         public MosaicGenerator(string inputImagePath, string outputImagePath, ReferenceImagesParser imagesParser)
         {
@@ -26,6 +27,9 @@ namespace ImageMosaic
         {
             ImageProcessor processor = new ImageProcessor(inputImagePath, tileSize);
             Color[,] imageColors = processor.GetColorMatrix();
+            while (processor.image.Width*dstImageMultiplicator > 10000 ||
+                   processor.image.Height*dstImageMultiplicator > 10000)
+                dstImageMultiplicator--;
             Bitmap exportImage = new Bitmap(processor.image.Width * dstImageMultiplicator, processor.image.Height * dstImageMultiplicator);
             Graphics graphics = Graphics.FromImage(exportImage);
             int tilesWidth = processor.image.Width / tileSize;
@@ -33,23 +37,22 @@ namespace ImageMosaic
             int tileSizeWidth = tileSize * dstImageMultiplicator;
             int tileSizeHeight = tileSize * dstImageMultiplicator;
             int tileCounter = 1;
-            IDictionary<string, Image> imagesCache = new Dictionary<string, Image>();
             for (int i = 0; i < tilesHeight; i++)
             {
                 for (int j = 0; j < tilesWidth; j++)
                 {
                     string imageName = _getTileImageName(imageColors[j, i]);
-                    if(!imagesCache.ContainsKey(imageName))
-                        imagesCache.Add(imageName, Image.FromFile(imageName));
-                    Rectangle srcRect = new Rectangle(0, 0, imagesCache[imageName].Width, imagesCache[imageName].Height);
+                    Image image =  Image.FromFile(imageName);
+                    Rectangle srcRect = new Rectangle(0, 0, image.Width, image.Height);
                     Rectangle dstRect = new Rectangle(j*tileSizeWidth, i* tileSizeHeight, tileSizeWidth, tileSizeHeight);
-                    graphics.DrawImage(imagesCache[imageName], dstRect, srcRect, GraphicsUnit.Pixel);
+                    graphics.DrawImage(image, dstRect, srcRect, GraphicsUnit.Pixel);
                     Console.Clear();
                     Console.WriteLine("Processed " + tileCounter + " tiles of " + tilesHeight * tilesWidth);
                     tileCounter++;
                 }
+                System.GC.Collect();
             }
-            exportImage.Save(outputImagePath, ImageFormat.Png);
+            exportImage.Save(outputImagePath+".jpg", ImageFormat.Jpeg);
         }
 
         /// <summary>
@@ -61,18 +64,24 @@ namespace ImageMosaic
         {
             string currentImageMatch = "";
             int minColorMatch = Int32.MaxValue;
-            
-            foreach (string imageName in imagesParser.ColorSet.Keys)
+
+            Parallel.ForEach(imagesParser.ColorSet.Keys, (imageName) =>
             {
-                ColorComparer targetColor = new ColorComparer(color.R,color.G, color.B);
+                ColorComparer targetColor = new ColorComparer(color.R, color.G, color.B);
                 ColorComparer currenColor = new ColorComparer(imagesParser.ColorSet[imageName].R, imagesParser.ColorSet[imageName].G, imagesParser.ColorSet[imageName].B);
-                int colorMatch = currenColor.CompareTo(targetColor);
-                if (colorMatch < minColorMatch)
+
+                lock (thisLock)
                 {
-                    minColorMatch = colorMatch;
-                    currentImageMatch = imageName;
+                    int colorMatch = currenColor.CompareTo(targetColor);
+
+                    if (colorMatch < minColorMatch)
+                    {
+                        minColorMatch = colorMatch;
+                        currentImageMatch = imageName;
+                    }
                 }
-            }
+                
+            });
             return currentImageMatch;
         }
     }
