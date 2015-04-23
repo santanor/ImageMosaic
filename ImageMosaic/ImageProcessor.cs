@@ -65,15 +65,21 @@ namespace ImageMosaic
         /// Store the image as a mosaic of plain colors
         /// </summary>
         /// <param name="path"></param>
-        public void SaveImageColorMosaic(string path)
+        public void SaveHamaTemplate(string path)
         {
             Bitmap exportImage = new Bitmap(this.image.Width, this.image.Height);
             Graphics graphics = Graphics.FromImage(exportImage);
             SolidBrush[,] brushes = _getBrushes(GetColorMatrix());
 
             for (int i = 0; i < tilesHeight; i++)
+            {
                 for (int j = 0; j < tilesWidth; j++)
-                    graphics.FillRectangle(brushes[j,i], j * squaresWidth, i * squaresHeight, squaresWidth, squaresHeight);
+                {
+                    graphics.FillRectangle(new SolidBrush(Color.Black), j * squaresWidth, i * squaresHeight, squaresWidth, squaresHeight);
+                    graphics.FillRectangle(brushes[j, i], j * squaresWidth-3, i * squaresHeight-3, squaresWidth-3, squaresHeight-3);
+                }
+            }
+               
             exportImage.Save(path, ImageFormat.Png);
         }
 

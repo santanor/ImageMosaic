@@ -12,7 +12,7 @@ namespace ImageMosaic
         static void Main(string[] args)
         {
             ReferenceImagesParser imageParser = new ReferenceImagesParser("ReferenceImages");
-            imageParser.ParseAllImages();
+            //imageParser.ParseAllImages();
 
             while (true)
             {
@@ -33,10 +33,13 @@ namespace ImageMosaic
             }
         }
 
+
         private static void generateMosaic(ReferenceImagesParser imageParser, string sourceImg, string dstImg, string tileSize)
         {
-            MosaicGenerator generator = new MosaicGenerator(sourceImg, dstImg, imageParser);
-            generator.GenerateImageMosaic(int.Parse(tileSize), 10);
+            ImageProcessor processor = new ImageProcessor(sourceImg, Int32.Parse(tileSize));
+            processor.SaveHamaTemplate(dstImg);
+            //MosaicGenerator generator = new MosaicGenerator(sourceImg, dstImg, imageParser);
+            //generator.GenerateImageMosaic(int.Parse(tileSize), 10);
         }
     }
 }
