@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ImageMosaic
+namespace ImageMosaic.ImageProcessing
 {
-    class ReferenceImagesParser
+    public class ReferenceImagesParser
     {
         private string imagesPath;
         private string[] imagesNames;

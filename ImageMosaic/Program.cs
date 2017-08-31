@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ImageMosaic.ImageProcessing;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -11,9 +12,7 @@ namespace ImageMosaic
     {
         static void Main(string[] args)
         {
-            ReferenceImagesParser imageParser = new ReferenceImagesParser("ReferenceImages");
-            //imageParser.ParseAllImages();
-
+            
             while (true)
             {
                 Console.WriteLine("Write the name path of the source image and the name of the output image and the tilesize");

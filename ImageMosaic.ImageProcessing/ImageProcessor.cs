@@ -9,12 +9,11 @@ using System.Drawing.Imaging;
 using System.Globalization;
 using System.Security.Principal;
 
-namespace ImageMosaic
+namespace ImageMosaic.ImageProcessing
 {
     public class ImageProcessor
     {
         public Bitmap image { get; private set; }
-        private Image outputImage;
         private int squareTam;
 
         private int tilesWidth;

@@ -1,9 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.10
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageMosaic", "ImageMosaic\ImageMosaic.csproj", "{C72B7CE7-FC39-49DA-AEB4-4E788C184A3B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageMosaic.DatabaseWorker", "ImageMosaic.DatabaseWorkerService\ImageMosaic.DatabaseWorker.csproj", "{3C080E5C-3570-40AD-84B5-E8562373CD40}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageMosaic.ImageProcessing", "ImageMosaic.ImageProcessing\ImageMosaic.ImageProcessing.csproj", "{BE102677-A341-4568-AD0E-1CE0099D733F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageMosaic.Domain.Model", "ImageMosaic.Domain.Model\ImageMosaic.Domain.Model.csproj", "{B98A77F9-9D75-4F4C-AF92-B51DF8053F52}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,8 +21,23 @@ Global
 		{C72B7CE7-FC39-49DA-AEB4-4E788C184A3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C72B7CE7-FC39-49DA-AEB4-4E788C184A3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C72B7CE7-FC39-49DA-AEB4-4E788C184A3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C080E5C-3570-40AD-84B5-E8562373CD40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C080E5C-3570-40AD-84B5-E8562373CD40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C080E5C-3570-40AD-84B5-E8562373CD40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C080E5C-3570-40AD-84B5-E8562373CD40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE102677-A341-4568-AD0E-1CE0099D733F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE102677-A341-4568-AD0E-1CE0099D733F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE102677-A341-4568-AD0E-1CE0099D733F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE102677-A341-4568-AD0E-1CE0099D733F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B98A77F9-9D75-4F4C-AF92-B51DF8053F52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B98A77F9-9D75-4F4C-AF92-B51DF8053F52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B98A77F9-9D75-4F4C-AF92-B51DF8053F52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B98A77F9-9D75-4F4C-AF92-B51DF8053F52}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {07186F28-23F1-42C7-81EB-F48B311B45BF}
 	EndGlobalSection
 EndGlobal

@@ -15,3 +15,15 @@ C:\Users\jose_\Documents\ImageMosaic\ImageMosaic\bin\Debug\ImageMosaic.pdb
 C:\Users\jose_\Documents\ImageMosaic\ImageMosaic\obj\Debug\ImageMosaic.csprojResolveAssemblyReference.cache
 C:\Users\jose_\Documents\ImageMosaic\ImageMosaic\obj\Debug\ImageMosaic.exe
 C:\Users\jose_\Documents\ImageMosaic\ImageMosaic\obj\Debug\ImageMosaic.pdb
+C:\Users\jose_\source\repos\ImageMosaic\ImageMosaic\obj\Debug\ImageMosaic.csprojResolveAssemblyReference.cache
+C:\Users\jose_\source\repos\ImageMosaic\ImageMosaic\obj\Debug\ImageMosaic.csproj.CoreCompileInputs.cache
+C:\Users\jose_\source\repos\ImageMosaic\ImageMosaic\bin\Debug\ImageMosaic.exe.config
+C:\Users\jose_\source\repos\ImageMosaic\ImageMosaic\bin\Debug\ImageMosaic.exe
+C:\Users\jose_\source\repos\ImageMosaic\ImageMosaic\bin\Debug\ImageMosaic.pdb
+C:\Users\jose_\source\repos\ImageMosaic\ImageMosaic\bin\Debug\ImageMosaic.DatabaseWorkerService.exe
+C:\Users\jose_\source\repos\ImageMosaic\ImageMosaic\bin\Debug\ImageMosaic.ImageProcessing.dll
+C:\Users\jose_\source\repos\ImageMosaic\ImageMosaic\bin\Debug\ImageMosaic.DatabaseWorkerService.pdb
+C:\Users\jose_\source\repos\ImageMosaic\ImageMosaic\bin\Debug\ImageMosaic.DatabaseWorkerService.exe.config
+C:\Users\jose_\source\repos\ImageMosaic\ImageMosaic\bin\Debug\ImageMosaic.ImageProcessing.pdb
+C:\Users\jose_\source\repos\ImageMosaic\ImageMosaic\obj\Debug\ImageMosaic.exe
+C:\Users\jose_\source\repos\ImageMosaic\ImageMosaic\obj\Debug\ImageMosaic.pdb
