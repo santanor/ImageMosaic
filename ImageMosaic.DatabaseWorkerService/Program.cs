@@ -5,6 +5,8 @@ using System.ServiceProcess;
 using System.Text;
 using ImageMosaic.ImageProcessing;
 using System.Threading.Tasks;
+using ImageMosaic.Domain.Model;
+using ImageMosaic.DatabaseWorkerService;
 
 namespace ImageMosaic.DatabaseWorker
 {
@@ -15,7 +17,8 @@ namespace ImageMosaic.DatabaseWorker
         /// </summary>
         static void Main()
         {
-            var reference = new ReferenceImagesParser("D")
+            var service = new WorkerService();
+            service.Run();
         }
     }
 }

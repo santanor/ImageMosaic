@@ -27,3 +27,10 @@ C:\Users\jose_\source\repos\ImageMosaic\ImageMosaic\bin\Debug\ImageMosaic.Databa
 C:\Users\jose_\source\repos\ImageMosaic\ImageMosaic\bin\Debug\ImageMosaic.ImageProcessing.pdb
 C:\Users\jose_\source\repos\ImageMosaic\ImageMosaic\obj\Debug\ImageMosaic.exe
 C:\Users\jose_\source\repos\ImageMosaic\ImageMosaic\obj\Debug\ImageMosaic.pdb
+C:\Users\jose_\source\repos\ImageMosaic\ImageMosaic\bin\Debug\ImageMosaic.Domain.Model.dll
+C:\Users\jose_\source\repos\ImageMosaic\ImageMosaic\bin\Debug\MySql.Data.Entity.EF6.dll
+C:\Users\jose_\source\repos\ImageMosaic\ImageMosaic\bin\Debug\EntityFramework.dll
+C:\Users\jose_\source\repos\ImageMosaic\ImageMosaic\bin\Debug\MySql.Data.dll
+C:\Users\jose_\source\repos\ImageMosaic\ImageMosaic\bin\Debug\ImageMosaic.Domain.Model.pdb
+C:\Users\jose_\source\repos\ImageMosaic\ImageMosaic\bin\Debug\ImageMosaic.Domain.Model.dll.config
+C:\Users\jose_\source\repos\ImageMosaic\ImageMosaic\bin\Debug\EntityFramework.xml

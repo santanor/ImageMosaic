@@ -14,10 +14,10 @@ namespace ImageMosaic
 
         private string inputImagePath;
         private string outputImagePath;
-        private ReferenceImagesParser imagesParser;
+        private ReferenceImageParser imagesParser;
         private Object thisLock = new Object();
 
-        public MosaicGenerator(string inputImagePath, string outputImagePath, ReferenceImagesParser imagesParser)
+        public MosaicGenerator(string inputImagePath, string outputImagePath, ReferenceImageParser imagesParser)
         {
             this.inputImagePath = inputImagePath;
             this.outputImagePath = outputImagePath;
@@ -63,27 +63,27 @@ namespace ImageMosaic
         /// <returns></returns>
         private string _getTileImageName(Color color)
         {
-            string currentImageMatch = "";
-            int minColorMatch = Int32.MaxValue;
+            //string currentImageMatch = "";
+            //int minColorMatch = Int32.MaxValue;
 
-            Parallel.ForEach(imagesParser.ColorSet.Keys, (imageName) =>
-            {
-                ColorComparer targetColor = new ColorComparer(color.R, color.G, color.B);
-                ColorComparer currenColor = new ColorComparer(imagesParser.ColorSet[imageName].R, imagesParser.ColorSet[imageName].G, imagesParser.ColorSet[imageName].B);
+            //Parallel.ForEach(imagesParser.ColorSet.Keys, (imageName) =>
+            //{
+            //    ColorComparer targetColor = new ColorComparer(color.R, color.G, color.B);
+            //    ColorComparer currenColor = new ColorComparer(imagesParser.ColorSet[imageName].R, imagesParser.ColorSet[imageName].G, imagesParser.ColorSet[imageName].B);
 
-                lock (thisLock)
-                {
-                    int colorMatch = currenColor.CompareTo(targetColor);
+            //    lock (thisLock)
+            //    {
+            //        int colorMatch = currenColor.CompareTo(targetColor);
 
-                    if (colorMatch < minColorMatch)
-                    {
-                        minColorMatch = colorMatch;
-                        currentImageMatch = imageName;
-                    }
-                }
+            //        if (colorMatch < minColorMatch)
+            //        {
+            //            minColorMatch = colorMatch;
+            //            currentImageMatch = imageName;
+            //        }
+            //    }
                 
-            });
-            return currentImageMatch;
+            //});
+            return "";
         }
     }
 }

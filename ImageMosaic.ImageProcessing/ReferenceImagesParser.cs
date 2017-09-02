@@ -2,6 +2,7 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -9,87 +10,41 @@ using System.Threading.Tasks;
 
 namespace ImageMosaic.ImageProcessing
 {
-    public class ReferenceImagesParser
+    public class ReferenceImageParser
     {
-        private string imagesPath;
-        private string[] imagesNames;
-        private string[] imagesCache;
-        public IDictionary<string, Color> ColorSet { get; set; }
+        private Stream _imageStream;
 
-        public ReferenceImagesParser(string imagesPath)
+        public ReferenceImageParser(Stream image)
         {
-            this.imagesPath = imagesPath;
-            imagesNames = Directory.GetFiles(imagesPath);//Loads the images name for future processing
-            imagesCache = File.ReadAllLines("ReferenceImages/Cache/cache.txt");
-            ColorSet = new Dictionary<string,Color>();
+            this._imageStream = image;
         }
 
-        /// <summary>
-        /// Parse all the images in the "imagesPath" field and gets the dominant Color
-        /// </summary>
-        public IDictionary<string, Color> ParseAllImages()
+        public Bitmap ImageToBitmap(ImageFormat format)
         {
-            if (imagesNames.Length-1 == imagesCache.Length)
-                _recoverImagesFromCache();
-            else
-                _parseImages();
-           
-            return ColorSet;
-        }
+            BinaryReader b = new BinaryReader(this._imageStream);
+            this._imageStream.Position = 0;
+            byte[] binData = b.ReadBytes((int)this._imageStream.Length);
 
-        /// <summary>
-        /// Recover each image color from the local cache to avoid startup load
-        /// </summary>
-        private void _recoverImagesFromCache()
-        {
-            Console.WriteLine("Recovering the images from the cache");
-            foreach (string image in imagesCache)
-            {
-                string[] imageParams = image.Split(',');
-                Color c = Color.FromArgb(int.Parse(imageParams[1]), int.Parse(imageParams[2]), int.Parse(imageParams[3]));
-                if(!ColorSet.ContainsKey(imageParams[0]))
-                    ColorSet.Add(imageParams[0],c);
-            }
-        }
+            Bitmap imageObject = new Bitmap(new MemoryStream(binData));
 
-        /// <summary>
-        /// Parse all the images and stores a local copy in the cache for future reading
-        /// </summary>
-        private void _parseImages()
-        {
-            Console.WriteLine("Cache failed to load. Preprocessing Images");
-            int counter = 1;
-            IList<string> imagesCache = new List<string>();
-            Parallel.For(0, imagesNames.Length, i =>
-            {
-                Color color = _getImageColor(imagesNames[i]);
-                if (color != Color.Transparent)
-                {
-                    ColorSet.Add(imagesNames[i], color);
-                    Console.Clear();
-                    Console.WriteLine("Images Processed: " + counter + " tiles of " + imagesNames.Length);
-                    imagesCache.Add(imagesNames[i]+","+color.R+","+color.G+","+color.B);
-                    imagesNames[i] = "";
-                }
+            MemoryStream stream = new MemoryStream();
+            imageObject.Save(stream, format);
 
-                counter++;
-                if (counter % 50 == 0)//Force the garbage collector to dispose of unmanaged resources
-                    System.GC.Collect();
-            });
-            System.GC.Collect();
-            File.WriteAllLines("ReferenceImages/Cache/cache.txt", imagesCache.ToArray());
+            return new Bitmap(stream);
         }
+        
 
         /// <summary>
         /// Process a single image and returns the Dominant Color
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        private Color _getImageColor(string name)
+        public Color GetDominantColor()
         {
             try
             {
-                ImageProcessor processor = new ImageProcessor(name);
+                var bitmap = ImageToBitmap(ImageFormat.Png);
+                ImageProcessor processor = new ImageProcessor(bitmap);
                 Color color = processor.GetDominantColor();
                 return color;
             }
@@ -97,9 +52,7 @@ namespace ImageMosaic.ImageProcessing
             {
                 return Color.Transparent;
                 throw;
-            }
-            
-            
+            }            
         }
 
 

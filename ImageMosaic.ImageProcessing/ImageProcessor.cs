@@ -50,6 +50,15 @@ namespace ImageMosaic.ImageProcessing
             squaresHeight = squareTam;
         }
 
+        public ImageProcessor(Bitmap bitmap)
+        {
+            image = bitmap;
+            this.squareTam = (image.Width < image.Height) ? image.Width : image.Height;
+            tilesWidth = image.Width / squareTam;
+            tilesHeight = image.Height / squareTam;
+            squaresWidth = squareTam;
+            squaresHeight = squareTam;
+        }
 
         /// <summary>
         /// Returns the dominant color of the image
