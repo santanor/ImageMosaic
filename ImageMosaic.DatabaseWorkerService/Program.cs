@@ -17,8 +17,13 @@ namespace ImageMosaic.DatabaseWorker
         /// </summary>
         static void Main()
         {
-            var service = new WorkerService();
-            service.Run();
+            try
+            {
+                var service = new WorkerService();
+                service.Run();
+            }
+            catch (Exception) { }
+            
         }
     }
 }

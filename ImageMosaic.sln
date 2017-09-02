@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageMosaic.ImageProcessing
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageMosaic.Domain.Model", "ImageMosaic.Domain.Model\ImageMosaic.Domain.Model.csproj", "{B98A77F9-9D75-4F4C-AF92-B51DF8053F52}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageMosaic.ImageDownloader", "ImageMosaic.ImageDownloader\ImageMosaic.ImageDownloader.csproj", "{21EE5623-C7C2-4CBC-9BB5-25D501DC336C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{B98A77F9-9D75-4F4C-AF92-B51DF8053F52}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B98A77F9-9D75-4F4C-AF92-B51DF8053F52}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B98A77F9-9D75-4F4C-AF92-B51DF8053F52}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21EE5623-C7C2-4CBC-9BB5-25D501DC336C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21EE5623-C7C2-4CBC-9BB5-25D501DC336C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21EE5623-C7C2-4CBC-9BB5-25D501DC336C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21EE5623-C7C2-4CBC-9BB5-25D501DC336C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

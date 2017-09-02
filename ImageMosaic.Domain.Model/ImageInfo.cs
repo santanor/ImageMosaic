@@ -12,7 +12,7 @@ namespace ImageMosaic.Domain.Model
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        public Color Color { get; set; }
+        public int ArgbColor { get; set; }
         
         public virtual ImageBlob ImageBlob { get; set; }
     }

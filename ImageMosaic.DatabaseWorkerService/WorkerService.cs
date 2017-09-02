@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ImageMosaic.DatabaseWorkerService
@@ -23,7 +24,7 @@ namespace ImageMosaic.DatabaseWorkerService
         }
 
         public void Run()
-        {
+        {            
             while (true)
             {
                 Console.WriteLine("Fetching next image");
@@ -35,7 +36,8 @@ namespace ImageMosaic.DatabaseWorkerService
                 var color = parser.GetDominantColor();
                 var byteArray = StreamToByte(stream);
                 Console.WriteLine("Saving to the database");
-                SaveImageToDb(color, byteArray);                
+                SaveImageToDb(color, byteArray);
+                image.Dispose();
                 _io.DeleteLastImage();
                 Console.WriteLine("Image deleted");
             }
@@ -61,17 +63,17 @@ namespace ImageMosaic.DatabaseWorkerService
                 bool success = true;
                 var imageInfo = new ImageInfo
                 {
-                    Color = color,
+                    ArgbColor = color.ToArgb(),
                     ImageBlob = new ImageBlob
                     {
                         Image = bytes
                     }
                 };
-                context.ImageInfo.Attach(imageInfo);
+                context.ImageInfo.Add(imageInfo);
                 context.SaveChanges();
                 return success;
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return false;
             }

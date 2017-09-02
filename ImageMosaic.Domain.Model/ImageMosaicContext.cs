@@ -16,6 +16,7 @@ namespace ImageMosaic.Domain.Model
 
         public ImageMosaicContext() :base("ImageMosaic")
         {
+            this.Database.CreateIfNotExists();
         }
     }
 }
