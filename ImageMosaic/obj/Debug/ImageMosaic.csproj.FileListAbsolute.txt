@@ -34,3 +34,12 @@ C:\Users\jose_\source\repos\ImageMosaic\ImageMosaic\bin\Debug\MySql.Data.dll
 C:\Users\jose_\source\repos\ImageMosaic\ImageMosaic\bin\Debug\ImageMosaic.Domain.Model.pdb
 C:\Users\jose_\source\repos\ImageMosaic\ImageMosaic\bin\Debug\ImageMosaic.Domain.Model.dll.config
 C:\Users\jose_\source\repos\ImageMosaic\ImageMosaic\bin\Debug\EntityFramework.xml
+C:\Users\jose_\Documents\ImageMosaic\ImageMosaic\bin\Debug\ImageMosaic.DatabaseWorkerService.exe
+C:\Users\jose_\Documents\ImageMosaic\ImageMosaic\bin\Debug\ImageMosaic.ImageProcessing.dll
+C:\Users\jose_\Documents\ImageMosaic\ImageMosaic\bin\Debug\ImageMosaic.Domain.Model.dll
+C:\Users\jose_\Documents\ImageMosaic\ImageMosaic\bin\Debug\MySql.Data.Entity.EF6.dll
+C:\Users\jose_\Documents\ImageMosaic\ImageMosaic\bin\Debug\MySql.Data.dll
+C:\Users\jose_\Documents\ImageMosaic\ImageMosaic\bin\Debug\ImageMosaic.DatabaseWorkerService.pdb
+C:\Users\jose_\Documents\ImageMosaic\ImageMosaic\bin\Debug\ImageMosaic.ImageProcessing.pdb
+C:\Users\jose_\Documents\ImageMosaic\ImageMosaic\bin\Debug\ImageMosaic.Domain.Model.pdb
+C:\Users\jose_\Documents\ImageMosaic\ImageMosaic\bin\Debug\EntityFramework.xml

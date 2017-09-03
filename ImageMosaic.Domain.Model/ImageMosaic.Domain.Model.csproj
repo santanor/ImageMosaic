@@ -56,7 +56,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ImageBlob.cs" />
     <Compile Include="ImageInfo.cs" />
     <Compile Include="ImageMosaicContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

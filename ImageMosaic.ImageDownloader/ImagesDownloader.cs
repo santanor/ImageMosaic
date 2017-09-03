@@ -25,8 +25,7 @@ namespace ImageMosaic.DatabaseWorkerService
         {
             try
             {
-                foreach (var x in lines)
-                {
+                foreach(var x in lines){
                     var url = x.Split(',')[2];
                     SaveImage(url);
                 };
@@ -38,16 +37,23 @@ namespace ImageMosaic.DatabaseWorkerService
 
         private void SaveImage(string imageUrl)
         {
-            WebClient client = new WebClient();
-            Stream stream = client.OpenRead(imageUrl);
-            Bitmap bitmap; bitmap = new Bitmap(stream);
+            try
+            {
+                WebClient client = new WebClient();
+                Stream stream = client.OpenRead(imageUrl);
+                Bitmap bitmap; bitmap = new Bitmap(stream);
 
-            if (bitmap != null)
-                bitmap.Save($"D:\\ReferenceImages\\{imageUrl.Split('/')[4]}.png", ImageFormat.Png);
+                if (bitmap != null)
+                    bitmap.Save($"D:\\ReferenceImages\\{imageUrl.Split('/')[4]}.png", ImageFormat.Png);
 
-            stream.Flush();
-            stream.Close();
-            client.Dispose();
+                stream.Flush();
+                stream.Close();
+                client.Dispose();
+            }catch(Exception e)
+            {
+
+            }
+            
         }
 
 

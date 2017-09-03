@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ImageMosaic.ImageProcessing;
+using ImageMosaic.Domain.Model;
+using System.Collections.Concurrent;
 
 namespace ImageMosaic
 {
@@ -14,14 +16,14 @@ namespace ImageMosaic
 
         private string inputImagePath;
         private string outputImagePath;
-        private ReferenceImageParser imagesParser;
         private Object thisLock = new Object();
+        private ImageMosaicContext context;
 
-        public MosaicGenerator(string inputImagePath, string outputImagePath, ReferenceImageParser imagesParser)
+        public MosaicGenerator(string inputImagePath, string outputImagePath)
         {
             this.inputImagePath = inputImagePath;
             this.outputImagePath = outputImagePath;
-            this.imagesParser = imagesParser;
+            this.context = new ImageMosaicContext();
         }
 
         public void GenerateImageMosaic(int tileSize, int dstImageMultiplicator)
@@ -38,20 +40,22 @@ namespace ImageMosaic
             int tileSizeWidth = tileSize * dstImageMultiplicator;
             int tileSizeHeight = tileSize * dstImageMultiplicator;
             int tileCounter = 1;
+            string[,] imagePaths = _getAllImageColors(imageColors);
+            //var dic = GetCachedImages(imagePaths);
             for (int i = 0; i < tilesHeight; i++)
             {
+                Console.Clear();
+                Console.WriteLine("Processed " + tileCounter + " tiles of " + tilesHeight * tilesWidth);
                 for (int j = 0; j < tilesWidth; j++)
                 {
-                    string imageName = _getTileImageName(imageColors[j, i]);
+                    string imageName = imagePaths[j, i];
                     Image image =  Image.FromFile(imageName);
                     Rectangle srcRect = new Rectangle(0, 0, image.Width, image.Height);
                     Rectangle dstRect = new Rectangle(j*tileSizeWidth, i* tileSizeHeight, tileSizeWidth, tileSizeHeight);
-                    graphics.DrawImage(image, dstRect, srcRect, GraphicsUnit.Pixel);
-                    Console.Clear();
-                    Console.WriteLine("Processed " + tileCounter + " tiles of " + tilesHeight * tilesWidth);
+                    graphics.DrawImage(image, dstRect, srcRect, GraphicsUnit.Pixel);                    
                     tileCounter++;
-                }
-                System.GC.Collect();
+                    image.Dispose();
+                }                
             }
             exportImage.Save(outputImagePath+".jpg", ImageFormat.Jpeg);
         }
@@ -62,28 +66,45 @@ namespace ImageMosaic
         /// <param name="color"></param>
         /// <returns></returns>
         private string _getTileImageName(Color color)
+        {            
+            var argbColor = color.ToArgb();
+            var closestMatch = context.ImageInfo.OrderBy(x => Math.Abs(Math.Abs(argbColor) - Math.Abs(x.ArgbColor))).FirstOrDefault();
+            return closestMatch.ImagePath;
+        }
+
+        private string[,] _getAllImageColors(Color[,] colors)
         {
-            //string currentImageMatch = "";
-            //int minColorMatch = Int32.MaxValue;
+            var allImageColors = new string[colors.GetLength(0), colors.GetLength(1)];
+            var imagesCache = context.ImageInfo.Select(x => new { x.ArgbColor, x.ImagePath }).ToList();
+            for(int i = 0; i < allImageColors.GetLength(0); i++)
+            {
+                for (int j = 0; j < allImageColors.GetLength(1); j++)
+                {
+                    var argbColor = colors[i, j].ToArgb();
+                    allImageColors[i, j] = imagesCache.OrderBy(x => Math.Abs(Math.Abs(argbColor) - Math.Abs(x.ArgbColor))).FirstOrDefault()?.ImagePath;
+                }
+            }
 
-            //Parallel.ForEach(imagesParser.ColorSet.Keys, (imageName) =>
-            //{
-            //    ColorComparer targetColor = new ColorComparer(color.R, color.G, color.B);
-            //    ColorComparer currenColor = new ColorComparer(imagesParser.ColorSet[imageName].R, imagesParser.ColorSet[imageName].G, imagesParser.ColorSet[imageName].B);
+            return allImageColors;
+        }
 
-            //    lock (thisLock)
-            //    {
-            //        int colorMatch = currenColor.CompareTo(targetColor);
+        private ConcurrentDictionary<string, Image> GetCachedImages(string[,] paths)
+        {
+            var files = new List<string>();
+            for (int i = 0; i < paths.GetLength(0); i++)
+            {
+                for (int j = 0; j < paths.GetLength(1); j++)
+                {
+                    files.Add(paths[i, j]);
+                }
+            }
+            var dict = new ConcurrentDictionary<string, Image>();
+            Parallel.ForEach(files.Distinct(), row =>
+            {
+                dict.TryAdd(row, Image.FromFile(row));
+            });
 
-            //        if (colorMatch < minColorMatch)
-            //        {
-            //            minColorMatch = colorMatch;
-            //            currentImageMatch = imageName;
-            //        }
-            //    }
-                
-            //});
-            return "";
+            return dict;
         }
     }
 }

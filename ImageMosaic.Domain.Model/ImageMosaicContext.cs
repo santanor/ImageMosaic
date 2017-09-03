@@ -11,7 +11,6 @@ namespace ImageMosaic.Domain.Model
     [DbConfigurationType(typeof(MySqlEFConfiguration))]
     public class ImageMosaicContext : DbContext 
     {
-        public DbSet<ImageBlob> ImageBlob { get; set; }
         public DbSet<ImageInfo> ImageInfo { get; set; }
 
         public ImageMosaicContext() :base("ImageMosaic")

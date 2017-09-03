@@ -33,6 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -58,6 +59,10 @@
     <ProjectReference Include="..\ImageMosaic.DatabaseWorkerService\ImageMosaic.DatabaseWorker.csproj">
       <Project>{3c080e5c-3570-40ad-84b5-e8562373cd40}</Project>
       <Name>ImageMosaic.DatabaseWorker</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ImageMosaic.Domain.Model\ImageMosaic.Domain.Model.csproj">
+      <Project>{b98a77f9-9d75-4f4c-af92-b51df8053f52}</Project>
+      <Name>ImageMosaic.Domain.Model</Name>
     </ProjectReference>
     <ProjectReference Include="..\ImageMosaic.ImageProcessing\ImageMosaic.ImageProcessing.csproj">
       <Project>{be102677-a341-4568-ad0e-1ce0099d733f}</Project>
