@@ -1,6 +1,7 @@
 ﻿using ImageMosaic.ImageProcessing;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -21,7 +22,11 @@ namespace ImageMosaic
                 {
                     try
                     {
+                        Stopwatch sw = new Stopwatch();
+                        sw.Start();
                         generateMosaic(line[0], line[1], line[2]);
+                        sw.Stop();
+                        Console.WriteLine(sw.Elapsed);
                     }
                     catch (Exception e)
                     {
@@ -37,7 +42,7 @@ namespace ImageMosaic
         {
             //ImageProcessor processor = new ImageProcessor(sourceImg, Int32.Parse(tileSize));
             //processor.SaveHamaTemplate(dstImg);
-            MosaicGenerator generator = new MosaicGenerator(sourceImg, dstImg);
+            var generator = new MosaicGeneratorParalell(sourceImg, dstImg, 10);
             generator.GenerateImageMosaic(int.Parse(tileSize), 1);
         }
     }

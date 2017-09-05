@@ -22,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -45,16 +46,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ColorComparer.cs" />
+    <Compile Include="ConcurrentImageTileModel.cs" />
     <Compile Include="MosaicGenerator.cs" />
+    <Compile Include="MosaicGeneratorParalell.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ReferenceImages\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\ImageMosaic.DatabaseWorkerService\ImageMosaic.DatabaseWorker.csproj">
       <Project>{3c080e5c-3570-40ad-84b5-e8562373cd40}</Project>
