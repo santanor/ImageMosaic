@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.10
+VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageMosaic", "ImageMosaic\ImageMosaic.csproj", "{C72B7CE7-FC39-49DA-AEB4-4E788C184A3B}"
 EndProject
@@ -12,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageMosaic.Domain.Model", "ImageMosaic.Domain.Model\ImageMosaic.Domain.Model.csproj", "{B98A77F9-9D75-4F4C-AF92-B51DF8053F52}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageMosaic.ImageDownloader", "ImageMosaic.ImageDownloader\ImageMosaic.ImageDownloader.csproj", "{21EE5623-C7C2-4CBC-9BB5-25D501DC336C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageMosaic.GUI", "ImageMosaic.GUI\ImageMosaic.GUI.csproj", "{FCAFEA52-CCF8-48E0-9247-9035923B7717}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{21EE5623-C7C2-4CBC-9BB5-25D501DC336C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21EE5623-C7C2-4CBC-9BB5-25D501DC336C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{21EE5623-C7C2-4CBC-9BB5-25D501DC336C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FCAFEA52-CCF8-48E0-9247-9035923B7717}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCAFEA52-CCF8-48E0-9247-9035923B7717}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCAFEA52-CCF8-48E0-9247-9035923B7717}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCAFEA52-CCF8-48E0-9247-9035923B7717}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

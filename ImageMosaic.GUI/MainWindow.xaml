@@ -1,0 +1,26 @@
+﻿<Window x:Class="ImageMosaic.GUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ImageMosaic.GUI"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="619.908" Width="952.987" ResizeMode="NoResize">
+    <Grid Height="83" Margin="10,10,2,0" VerticalAlignment="Top" RenderTransformOrigin="0.505,-0.67">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="63*"/>
+            <RowDefinition Height="20*"/>
+        </Grid.RowDefinitions>
+        <TextBox x:Name="SourceImageTextBox" Margin="0,25,663,0" TextWrapping="Wrap" Text="Source Image" RenderTransformOrigin="0.292,-0.565" Height="23" VerticalAlignment="Top" HorizontalAlignment="Right" Width="160"/>
+        <TextBox x:Name="DestinyDirectoryTextBox" Margin="0,26,281,0" TextWrapping="Wrap" Text="Destiny Directory" RenderTransformOrigin="0.171,-0.957" Height="23" VerticalAlignment="Top" HorizontalAlignment="Right" Width="160"/>
+        <Label Content="Source Image" Margin="0,21,828,0" VerticalAlignment="Top" RenderTransformOrigin="0.053,-0.731" HorizontalAlignment="Right" Width="95"/>
+        <Label Content="Destiny Directory" Margin="388,22,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="101" RenderTransformOrigin="0.248,0.5"/>
+        <Button Content="Browse" Margin="0,26,568,0" RenderTransformOrigin="-0.173,-2.062" Height="22" VerticalAlignment="Top" HorizontalAlignment="Right" Width="90" Click="Button_ClickSourceImage"/>
+        <Button Content="Browse" Margin="659,26,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="90" Click="Button_ClickDestination" RenderTransformOrigin="-0.47,0.45"/>
+        <Button Content="Do The Thing!" Margin="10,52,823,0" VerticalAlignment="Top" Height="20" Grid.RowSpan="2" Click="Button_ClickDoTheThing"/>
+        <ProgressBar x:Name="ProgressBar" Height="19" Margin="115,53,23,0" VerticalAlignment="Top" Grid.RowSpan="2"/>
+        <Image HorizontalAlignment="Left" Height="444" Margin="10,48,0,-472" VerticalAlignment="Top" Width="900" Grid.Row="1"/>
+        <Label Content="Tile Size" HorizontalAlignment="Right" Margin="0,23,109,0" VerticalAlignment="Top" RenderTransformOrigin="-0.526,-0.769"/>
+        <TextBox x:Name="TileSizeTextBox" HorizontalAlignment="Left" Height="23" Margin="831,27,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="81" TextChanged="TextBox_TextChanged"/>
+    </Grid>
+</Window>

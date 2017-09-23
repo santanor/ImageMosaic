@@ -17,6 +17,9 @@ namespace ImageMosaic
 {
     public class MosaicGeneratorParalell
     {
+        public delegate void TilePlacedEvent(int tileCount, int totalTiles);
+
+        public TilePlacedEvent OnTilePlaced { get; set; }
         private string inputImagePath;
         private string outputImagePath;
         private Object thisLock = new Object();
@@ -69,10 +72,9 @@ namespace ImageMosaic
                     tilesProcessed++;
                     image.Image.Dispose();
                     image = null;
-                    if(tilesProcessed%100 == 0)
+                    if(tilesProcessed%100 == 0 && OnTilePlaced != null)
                     {
-                        Console.Clear();
-                        Console.WriteLine($"{tilesProcessed} tiles processed of {_totalTiles}");
+                        OnTilePlaced(tilesProcessed, _totalTiles);
                     }
                 }
 
