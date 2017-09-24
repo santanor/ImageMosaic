@@ -1,4 +1,4 @@
-﻿using ImageMosaic.Domain.Model;
+﻿ using ImageMosaic.Domain.Model;
 using ImageMosaic.ImageProcessing;
 using System;
 using System.Collections.Concurrent;
@@ -18,8 +18,14 @@ namespace ImageMosaic
     public class MosaicGeneratorParalell
     {
         public delegate void TilePlacedEvent(int tileCount, int totalTiles);
+        public delegate void TilePlacedStreamEvent(Image bitmap);
+        public delegate void GeneratorStart();
+        public delegate void GeneratorStop();
 
         public TilePlacedEvent OnTilePlaced { get; set; }
+        public TilePlacedStreamEvent OnTilePlacedStream { get; set; }
+        public GeneratorStart OnGeneratorStarted { get; set; }
+        public GeneratorStop OnGeneratorStop { get; set; }
         private string inputImagePath;
         private string outputImagePath;
         private Object thisLock = new Object();
@@ -41,6 +47,9 @@ namespace ImageMosaic
 
         public void GenerateImageMosaic(int tileSize, int dstImageMultiplicator)
         {
+            if (OnGeneratorStarted != null)
+                OnGeneratorStarted();
+
             ImageProcessor processor = new ImageProcessor(inputImagePath, tileSize);
             Color[,] imageColors = processor.GetColorMatrix();
             while (processor.image.Width * dstImageMultiplicator > 10000 ||
@@ -55,6 +64,9 @@ namespace ImageMosaic
 
             StartLoadImages(processor, tileSize, dstImageMultiplicator, imageColors);
             loadingFinished = true;
+
+            if (OnGeneratorStop != null)
+                OnGeneratorStop();
         }
 
         private void _generateExportImage(int tileSize, int dstImageMultiplicator)
@@ -72,9 +84,11 @@ namespace ImageMosaic
                     tilesProcessed++;
                     image.Image.Dispose();
                     image = null;
-                    if(tilesProcessed%100 == 0 && OnTilePlaced != null)
+                    if(tilesProcessed%5 == 0 && OnTilePlaced != null && OnTilePlacedStream != null)
                     {
                         OnTilePlaced(tilesProcessed, _totalTiles);
+                        var img = exportImage.Clone() as Image;
+                        OnTilePlacedStream(img);
                     }
                 }
 
@@ -122,7 +136,9 @@ namespace ImageMosaic
             memorySize.MaxWorkingSet = new IntPtr(2000000000);            
             for (int i = 0; i < tilesWidth; i++)
             {
-                Parallel.For(0, tilesHeight, j => {
+                //Parallel.For(0, tilesHeight, j => 
+                for(int j = 0; j < tilesHeight; j++)
+                {
                     var currentSuccess = false;
                     while (!currentSuccess)
                     {
@@ -152,7 +168,7 @@ namespace ImageMosaic
                         }
                 }
 
-                });
+                }//);
             }
         }
 

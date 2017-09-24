@@ -11,8 +11,17 @@ using System.Collections.Concurrent;
 
 namespace ImageMosaic
 {
-    class MosaicGenerator
+    public class MosaicGenerator
     {
+        public delegate void TilePlacedEvent(int tileCount, int totalTiles);
+        public delegate void TilePlacedStreamEvent(Image bitmap);
+        public delegate void GeneratorStart();
+        public delegate void GeneratorStop();
+
+        public TilePlacedEvent OnTilePlaced { get; set; }
+        public TilePlacedStreamEvent OnTilePlacedStream { get; set; }
+        public GeneratorStart OnGeneratorStarted { get; set; }
+        public GeneratorStop OnGeneratorStop { get; set; }
 
         private string inputImagePath;
         private string outputImagePath;
@@ -28,11 +37,17 @@ namespace ImageMosaic
 
         public void GenerateImageMosaic(int tileSize, int dstImageMultiplicator)
         {
+            if (OnGeneratorStarted != null)
+                OnGeneratorStarted();
+
+
             ImageProcessor processor = new ImageProcessor(inputImagePath, tileSize);
             Color[,] imageColors = processor.GetColorMatrix();
             while (processor.image.Width*dstImageMultiplicator > 10000 ||
                    processor.image.Height*dstImageMultiplicator > 10000)
                 dstImageMultiplicator--;
+
+            var _totalTiles = imageColors.GetLength(0) * imageColors.GetLength(1);
             Bitmap exportImage = new Bitmap(processor.image.Width * dstImageMultiplicator, processor.image.Height * dstImageMultiplicator);
             Graphics graphics = Graphics.FromImage(exportImage);
             int tilesWidth = processor.image.Width / tileSize;
@@ -44,8 +59,6 @@ namespace ImageMosaic
             //var dic = GetCachedImages(imagePaths);
             for (int i = 0; i < tilesHeight; i++)
             {
-                Console.Clear();
-                Console.WriteLine("Processed " + tileCounter + " tiles of " + tilesHeight * tilesWidth);
                 for (int j = 0; j < tilesWidth; j++)
                 {
                     string imageName = imagePaths[j, i];
@@ -53,11 +66,20 @@ namespace ImageMosaic
                     Rectangle srcRect = new Rectangle(0, 0, image.Width, image.Height);
                     Rectangle dstRect = new Rectangle(j*tileSizeWidth, i* tileSizeHeight, tileSizeWidth, tileSizeHeight);
                     graphics.DrawImage(image, dstRect, srcRect, GraphicsUnit.Pixel);                    
-                    tileCounter++;
+                    tileCounter++;          
+                    if (OnTilePlaced != null && OnTilePlacedStream != null)
+                    {
+                        OnTilePlaced(tileCounter, _totalTiles);
+                        var img = exportImage.Clone() as Image;
+                        OnTilePlacedStream(img);
+                    }
                     image.Dispose();
                 }                
             }
             exportImage.Save(outputImagePath+".jpg", ImageFormat.Jpeg);
+
+            if (OnGeneratorStop != null)
+                OnGeneratorStop();
         }
 
         /// <summary>

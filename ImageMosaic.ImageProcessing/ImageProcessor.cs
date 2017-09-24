@@ -108,6 +108,7 @@ namespace ImageMosaic.ImageProcessing
 
         /// <summary>
         /// Process a certain region of the image and returns the average of the color
+        /// https://codereview.stackexchange.com/questions/157667/getting-the-dominant-rgb-color-of-a-bitmap
         /// </summary>
         /// <param name="x"></param>
         /// <param name="y"></param>
@@ -116,29 +117,56 @@ namespace ImageMosaic.ImageProcessing
         /// <returns></returns>
         private Color _processRegion(int x, int y, int width, int height)
         {
-            int r = 0;
-            int g = 0;
-            int b = 0;
-            int a = 0;
-            int numberOfPixels = width*height;
-
-            for (int i = x; i < width + x; i++)
+            uint uWidth = (uint)width;
+            uint uHeight = (uint)height;
+            uint pixelCount = uWidth * uHeight;
+            BitmapData srcData = image.LockBits(new Rectangle(0, 0, width, height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+            uint[] totals = new uint[] { 0, 0, 0 };
+            unsafe
             {
-                for(int j = y; j < height+y;j++)
+                uint* p = (uint*)(void*)srcData.Scan0;
+
+                uint idx = 0;
+                while (idx < (pixelCount & ~0xff))
                 {
-                    if (i < image.Width && j < image.Height)
+                    uint sumRR00BB = 0;
+                    uint sum00GG00 = 0;
+                    for (int j = 0; j < 0x100; j++)
                     {
-                        Color pixelColor = image.GetPixel(i, j);
-                        r += pixelColor.R;
-                        g += pixelColor.G;
-                        b += pixelColor.B;
-                        a += pixelColor.A;
+                        sumRR00BB += p[idx] & 0xff00ff;
+                        sum00GG00 += p[idx] & 0x00ff00;
+                        idx++;
                     }
+
+                    totals[0] += sumRR00BB >> 16;
+                    totals[1] += sum00GG00 >> 8;
+                    totals[2] += sumRR00BB & 0xffff;
+                }
+
+                // And the final partial block of fewer than 0x100 pixels.
+                {
+                    uint sumRR00BB = 0;
+                    uint sum00GG00 = 0;
+                    while (idx < pixelCount)
+                    {
+                        sumRR00BB += p[idx] & 0xff00ff;
+                        sum00GG00 += p[idx] & 0x00ff00;
+                        idx++;
+                    }
+
+                    totals[0] += sumRR00BB >> 16;
+                    totals[1] += sum00GG00 >> 8;
+                    totals[2] += sumRR00BB & 0xffff;
                 }
             }
 
-            Color finalColor = Color.FromArgb(a/numberOfPixels, r/numberOfPixels, g/numberOfPixels, b/numberOfPixels);
-            return finalColor;
+            uint avgB = totals[0] / (uWidth * uHeight);
+            uint avgG = totals[1] / (uWidth * uHeight);
+            uint avgR = totals[2] / (uWidth * uHeight);
+
+            image.UnlockBits(srcData);
+
+            return Color.FromArgb((int)avgR, (int)avgG, (int)avgB);
         }
 
        
