@@ -58,7 +58,7 @@ namespace ImageMosaic.GUI
             var dst = DestinyDirectoryTextBox.Text;
             var tiles = int.Parse(TileSizeTextBox.Text);
             Task.Run(() => {
-                var generator = new MosaicGeneratorParalell(source, dst, 10);
+                var generator = new MosaicGeneratorParalell(source, dst, 5);
                 generator.OnTilePlaced += _UpdateProgress;
                 generator.OnTilePlacedStream += _UpdateImageProgress;
                 generator.OnGeneratorStarted += OnStartProcess;
@@ -90,7 +90,7 @@ namespace ImageMosaic.GUI
                 var bi = new BitmapImage();
                 bi.BeginInit();
                 bi.StreamSource = new MemoryStream();
-                image.Save(bi.StreamSource, ImageFormat.Bmp);
+                image.Save(bi.StreamSource, ImageFormat.Png);
                 bi.EndInit();
                 OutputImage.Source = bi;
                 image.Dispose();

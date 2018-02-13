@@ -5,6 +5,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
@@ -31,7 +32,7 @@ namespace ImageMosaic
         private Object thisLock = new Object();
         private ImageMosaicContext context;
         private int _maxImagesCached;
-        private ConcurrentQueue<ConcurrentImageTileModel> imagesCached;
+        private IList<ConcurrentImageTileModel> imagesCached;
         private int _totalTiles;
         private int _currentTileCount;
         private bool loadingFinished;
@@ -42,7 +43,7 @@ namespace ImageMosaic
             this.outputImagePath = outputImagePath;
             this.context = new ImageMosaicContext();
             this._maxImagesCached = maxImagesCached;
-            this.imagesCached = new ConcurrentQueue<ConcurrentImageTileModel>();
+            this.imagesCached = new List<ConcurrentImageTileModel>();
         }
 
         public void GenerateImageMosaic(int tileSize, int dstImageMultiplicator)
@@ -59,10 +60,11 @@ namespace ImageMosaic
             this._totalTiles = imageColors.GetLength(0) * imageColors.GetLength(1);
 
 
-            Thread thread = new Thread(() => _generateExportImage(tileSize, dstImageMultiplicator));
-            thread.Start();
+            //Thread thread = new Thread(() => _generateExportImage(tileSize, dstImageMultiplicator));
+            //thread.Start();
 
             StartLoadImages(processor, tileSize, dstImageMultiplicator, imageColors);
+            _generateExportImage(tileSize, dstImageMultiplicator);
             loadingFinished = true;
 
             if (OnGeneratorStop != null)
@@ -72,36 +74,35 @@ namespace ImageMosaic
         private void _generateExportImage(int tileSize, int dstImageMultiplicator)
         {
             ImageProcessor processor = new ImageProcessor(inputImagePath, tileSize);
-            Bitmap exportImage = new Bitmap(processor.image.Width * dstImageMultiplicator, processor.image.Height * dstImageMultiplicator);
-            Graphics graphics = Graphics.FromImage(exportImage);
+            int[,] exportImage = new int[processor.image.Width * dstImageMultiplicator, processor.image.Height * dstImageMultiplicator];
+            //Graphics graphics = Graphics.FromImage(exportImage);
             int tilesProcessed = 1;
-            while (!loadingFinished || imagesCached.Count > 0)
+            foreach(var image in imagesCached)
             {
-                ConcurrentImageTileModel image = null;
-                if (imagesCached.TryDequeue(out image))
+                var resizedImage = ResizeImage(image.Image, tileSize * dstImageMultiplicator, tileSize * dstImageMultiplicator);
+                var imgColorsMatrix = new ImageProcessor(resizedImage as Bitmap, 1).GetArgbMatrix();
+                foreach(var rect in image.Rectangles)
                 {
-                    graphics.DrawImage(image.Image, image.DstRectangle, image.SrcRectangle, GraphicsUnit.Pixel);
-                    tilesProcessed++;
-                    image.Image.Dispose();
-                    image = null;
-                    if(tilesProcessed%5 == 0 && OnTilePlaced != null && OnTilePlacedStream != null)
+                    CopyArgbImageToDst(ref imgColorsMatrix, ref exportImage, rect.DstRectangle);
+                    tilesProcessed++;                    
+                    if (tilesProcessed % 1000 == 0 && OnTilePlaced != null && OnTilePlacedStream != null)
                     {
                         OnTilePlaced(tilesProcessed, _totalTiles);
-                        var img = exportImage.Clone() as Image;
+                        var img = GetBitmapFromArgbMatrix(ref exportImage);
                         OnTilePlacedStream(img);
                     }
                 }
-
+                image.Dispose();                
             }
-
-            exportImage.Save(outputImagePath + ".jpg", ImageFormat.Jpeg);
+            var btmp = GetBitmapFromArgbMatrix(ref exportImage);
+            btmp.Save(outputImagePath + ".jpg", ImageFormat.Jpeg);
         }
 
         /// <summary>
         /// returns the name of the image that matches with the given color
         /// </summary>
         /// <param name="color"></param>
-        /// <returns></returns>
+        /// <returns></returns>s
         private string _getTileImageName(Color color)
         {
             var argbColor = color.ToArgb();
@@ -131,71 +132,100 @@ namespace ImageMosaic
             int tilesHeight = processor.image.Height / tileSize;
             int tileSizeWidth = tileSize * dstImageMultiplicator;
             int tileSizeHeight = tileSize * dstImageMultiplicator;
-            var imagePaths = this._getAllImageColors(colors);
-            var memorySize = Process.GetCurrentProcess();
-            memorySize.MaxWorkingSet = new IntPtr(2000000000);            
+            var imagePaths = this._getAllImageColors(colors);            
             for (int i = 0; i < tilesWidth; i++)
             {
-                //Parallel.For(0, tilesHeight, j => 
                 for(int j = 0; j < tilesHeight; j++)
                 {
-                    var currentSuccess = false;
-                    while (!currentSuccess)
+                    if (i < tilesHeight && j < tilesWidth)
                     {
-                        try
-                        { 
-                            if (i < tilesHeight && j < tilesWidth)
-                            {
-                                var fileName = imagePaths[i, j];
-                                var file = new FileInfo(fileName);                                
-                                while (IsFileLocked(file) || this.imagesCached.Count >= this._maxImagesCached) {}
-                                Image image = Image.FromFile(fileName);
-                                Rectangle srcRect = new Rectangle(0, 0, image.Width, image.Height);
-                                Rectangle dstRect = new Rectangle(j * tileSizeWidth, i * tileSizeHeight, tileSizeWidth, tileSizeHeight);
-                                this.imagesCached.Enqueue(new ConcurrentImageTileModel
-                                {
-                                    SrcRectangle = srcRect,
-                                    DstRectangle = dstRect,
-                                    Image = image
-                                });
-
-                            }
-                            _currentTileCount++;
-                            currentSuccess = true;
-                        }catch (OutOfMemoryException e)
+                        var fileName = imagePaths[i, j];
+                        //Check if the image exists in the collection already, if it does then just add the rect to the collection
+                        var imgExists = imagesCached.FirstOrDefault(x => x.ImageName == fileName);
+                        if(imgExists != null)
                         {
-                            currentSuccess = false;
+                            Rectangle srcRect = new Rectangle(0, 0, imgExists.Image.Width, imgExists.Image.Height);
+                            Rectangle dstRect = new Rectangle(j * tileSizeWidth, i * tileSizeHeight, tileSizeWidth, tileSizeHeight);
+                            imgExists.Rectangles.Add(new ConcurrentImageTileModel.ImageRect { SrcRectangle = srcRect, DstRectangle = dstRect });
                         }
+                        else
+                        {
+                            var file = new FileInfo(fileName);
+                            //while (IsFileLocked(file) || this.imagesCached.Count >= this._maxImagesCached) { }
+                            var image = Image.FromFile(fileName);
+                            Rectangle srcRect = new Rectangle(0, 0, image.Width, image.Height);
+                            Rectangle dstRect = new Rectangle(j * tileSizeWidth, i * tileSizeHeight, tileSizeWidth, tileSizeHeight);
+                            imagesCached.Add(new ConcurrentImageTileModel
+                            {
+                                Rectangles = new List<ConcurrentImageTileModel.ImageRect>(new []{ new ConcurrentImageTileModel.ImageRect { SrcRectangle = srcRect, DstRectangle = dstRect } }),
+                                Image = image,
+                                ImageName = fileName
+                            });
+                            
+
+                        }
+                    }
+                    _currentTileCount++; 
                 }
-
-                }//);
             }
         }
 
-        private bool IsFileLocked(FileInfo file)
+       
+        /// <summary>
+        /// Resize the image to the specified width and height.
+        /// </summary>
+        /// <param name="image">The image to resize.</param>
+        /// <param name="width">The width to resize to.</param>
+        /// <param name="height">The height to resize to.</param>
+        /// <returns>The resized image.</returns>
+        public static Image ResizeImage(Image image, int width, int height)
         {
-            FileStream stream = null;
-            try
-            {
-                stream = file.Open(FileMode.Open, FileAccess.Read, FileShare.None);
-            }
-            catch (IOException)
-            {
-                //the file is unavailable because it is:
-                //still being written to
-                //or being processed by another thread
-                //or does not exist (has already been processed)
-                return true;
-            }
-            finally
-            {
-                if (stream != null)
-                    stream.Close();
-            }
+            var destRect = new Rectangle(0, 0, width, height);
+            var destImage = new Bitmap(width, height);
 
-            //file is not locked
-            return false;
+            destImage.SetResolution(image.HorizontalResolution, image.VerticalResolution);
+
+            using (var graphics = Graphics.FromImage(destImage))
+            {
+                graphics.CompositingMode = CompositingMode.SourceCopy;
+                graphics.CompositingQuality = CompositingQuality.HighQuality;
+                graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                graphics.SmoothingMode = SmoothingMode.HighQuality;
+                graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
+
+                using (var wrapMode = new ImageAttributes())
+                {
+                    wrapMode.SetWrapMode(WrapMode.TileFlipXY);
+                    graphics.DrawImage(image, destRect, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, wrapMode);
+                }
+            }
+            return destImage;
         }
+
+        private void CopyArgbImageToDst(ref int[,] srcArgb, ref int[,] dstArgb, Rectangle dstRect)
+        {
+            for(int i = 0; i< srcArgb.GetLength(0); i++)
+            {
+                for(int j = 0; j < srcArgb.GetLength(1); j++)
+                {
+                    dstArgb[i + dstRect.X, j + dstRect.Y] = srcArgb[i, j];
+                }
+            }
+        }
+
+        private Bitmap GetBitmapFromArgbMatrix(ref int[,] argbMatrix)
+        {
+            Bitmap bitmap;
+            unsafe
+            {
+                fixed (int* intPtr = &argbMatrix[0, 0])
+                {
+                    bitmap = new Bitmap(argbMatrix.GetLength(0), argbMatrix.GetLength(1), argbMatrix.GetLength(0)*4, PixelFormat.Format16bppArgb1555, new IntPtr(intPtr));
+                }
+            }
+            return bitmap;
+        }
+        
     }
 }
 

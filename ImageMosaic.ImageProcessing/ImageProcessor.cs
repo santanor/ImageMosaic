@@ -60,6 +60,17 @@ namespace ImageMosaic.ImageProcessing
             squaresHeight = squareTam;
         }
 
+        public ImageProcessor(Bitmap bitmap, int squareTam)
+        {
+            image = bitmap;
+            this.squareTam = squareTam;
+            this.squareTam = (image.Width < image.Height) ? image.Width : image.Height;
+            tilesWidth = image.Width / squareTam;
+            tilesHeight = image.Height / squareTam;
+            squaresWidth = squareTam;
+            squaresHeight = squareTam;
+        }
+
         /// <summary>
         /// Returns the dominant color of the image
         /// </summary>
@@ -107,6 +118,22 @@ namespace ImageMosaic.ImageProcessing
         }
 
         /// <summary>
+        /// Transforms an image to a matrix of the predominant color of each region/tile as Argb
+        /// </summary>
+        /// <returns></returns>
+        public int[,] GetArgbMatrix()
+        {
+            int[,] colorSquares = new int[tilesWidth, tilesHeight];
+
+            for (int i = 0; i < tilesWidth - 1; i++)
+                for (int j = 0; j < tilesHeight - 1; j++)
+                    colorSquares[i, j] = _processRegion(squaresWidth * i, squaresHeight * j, squaresWidth, squaresHeight).ToArgb();
+
+            return colorSquares;
+        }
+
+
+        /// <summary>
         /// Process a certain region of the image and returns the average of the color
         /// https://codereview.stackexchange.com/questions/157667/getting-the-dominant-rgb-color-of-a-bitmap
         /// </summary>
@@ -138,9 +165,9 @@ namespace ImageMosaic.ImageProcessing
                         idx++;
                     }
 
-                    totals[0] += sumRR00BB >> 16;
+                    totals[0] += sumRR00BB & 0xffff;
                     totals[1] += sum00GG00 >> 8;
-                    totals[2] += sumRR00BB & 0xffff;
+                    totals[2] += sumRR00BB >> 16;
                 }
 
                 // And the final partial block of fewer than 0x100 pixels.
@@ -154,9 +181,9 @@ namespace ImageMosaic.ImageProcessing
                         idx++;
                     }
 
-                    totals[0] += sumRR00BB >> 16;
+                    totals[0] += sumRR00BB & 0xffff;
                     totals[1] += sum00GG00 >> 8;
-                    totals[2] += sumRR00BB & 0xffff;
+                    totals[2] += sumRR00BB >> 16;
                 }
             }
 
