@@ -1,25 +1,20 @@
-﻿using ImageMosaic.Domain.Model;
-using ImageMosaic.ImageProcessing;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
+using ImageMosaic.Domain.Model;
+using ImageMosaic.ImageProcessing;
 
 namespace ImageMosaic.DatabaseWorkerService
 {
     public class WorkerService
     {
-        private ImageIOController _io;
-        private const string _imagesPath = "D:\\ReferenceImages";
-        
+        private const string ImagesPath = "ReferenceImages";
+        private readonly ImageIoController io;
+
 
         public WorkerService()
         {
-            this._io = new ImageIOController(_imagesPath);
+            io = new ImageIoController(ImagesPath);
         }
 
         public void Run()
@@ -27,20 +22,22 @@ namespace ImageMosaic.DatabaseWorkerService
             while (true)
             {
                 var context = new ImageMosaicContext();
-                var imagePath = "";
-                var newImagePath = "";
-                var image = _io.GetNextImage(out imagePath);
-                if (image == null) continue;
+                var image = io.GetNextImage(out var imagePath);
+                if (image == null)
+                {
+                    continue;
+                }
+
                 var stream = ImageToStream(image);
                 var parser = new ReferenceImageParser(stream);
                 var color = parser.GetDominantColor();
-                newImagePath = _io.GetNewPath(imagePath);
+                var newImagePath = io.GetNewPath(imagePath);
                 SaveImageToDb(color, newImagePath, context);
                 image.Dispose();
-                _io.MoveLastImage(imagePath, newImagePath);
+                io.MoveLastImage(imagePath, newImagePath);
             }
         }
-               
+
         private MemoryStream ImageToStream(Image image)
         {
             var ms = new MemoryStream();
@@ -48,10 +45,10 @@ namespace ImageMosaic.DatabaseWorkerService
             return ms;
         }
 
-        private bool SaveImageToDb(Color color, string path, ImageMosaicContext context)
-        { 
-            try{
-                bool success = true;
+        private void SaveImageToDb(Color color, string path, ImageMosaicContext context)
+        {
+            try
+            {
                 var imageInfo = new ImageInfo
                 {
                     ArgbColor = color.ToArgb(),
@@ -59,13 +56,11 @@ namespace ImageMosaic.DatabaseWorkerService
                 };
                 context.ImageInfo.Add(imageInfo);
                 context.SaveChanges();
-                return success;
             }
             catch (Exception e)
             {
-                return false;
+                // ignored
             }
-            
         }
     }
 }

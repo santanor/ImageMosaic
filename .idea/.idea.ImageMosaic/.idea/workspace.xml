@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="d824b4da-bd9b-4403-9c5d-eb5c6e3fbae6" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/ImageMosaic.DatabaseWorkerService/ImageIOController.cs" afterPath="$PROJECT_DIR$/ImageMosaic.DatabaseWorkerService/ImageIOController.cs" />
+      <change beforePath="$PROJECT_DIR$/ImageMosaic.DatabaseWorkerService/ImageMosaic.DatabaseWorker.csproj" afterPath="$PROJECT_DIR$/ImageMosaic.DatabaseWorkerService/ImageMosaic.DatabaseWorker.csproj" />
+      <change beforePath="$PROJECT_DIR$/ImageMosaic.DatabaseWorkerService/Program.cs" afterPath="$PROJECT_DIR$/ImageMosaic.DatabaseWorkerService/Program.cs" />
+      <change beforePath="$PROJECT_DIR$/ImageMosaic.DatabaseWorkerService/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/ImageMosaic.DatabaseWorkerService/Properties/AssemblyInfo.cs" />
+      <change beforePath="$PROJECT_DIR$/ImageMosaic.DatabaseWorkerService/WorkerService.cs" afterPath="$PROJECT_DIR$/ImageMosaic.DatabaseWorkerService/WorkerService.cs" />
+      <change beforePath="$PROJECT_DIR$/ImageMosaic.Domain.Model/ImageInfo.cs" afterPath="$PROJECT_DIR$/ImageMosaic.Domain.Model/ImageInfo.cs" />
+      <change beforePath="$PROJECT_DIR$/ImageMosaic.Domain.Model/ImageMosaicContext.cs" afterPath="$PROJECT_DIR$/ImageMosaic.Domain.Model/ImageMosaicContext.cs" />
+      <change beforePath="$PROJECT_DIR$/ImageMosaic.Domain.Model/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/ImageMosaic.Domain.Model/Properties/AssemblyInfo.cs" />
+      <change beforePath="$PROJECT_DIR$/ImageMosaic.GUI/App.xaml" afterPath="$PROJECT_DIR$/ImageMosaic.GUI/App.xaml" />
+      <change beforePath="$PROJECT_DIR$/ImageMosaic.GUI/App.xaml.cs" afterPath="$PROJECT_DIR$/ImageMosaic.GUI/App.xaml.cs" />
+      <change beforePath="$PROJECT_DIR$/ImageMosaic.GUI/MainWindow.xaml" afterPath="$PROJECT_DIR$/ImageMosaic.GUI/MainWindow.xaml" />
+      <change beforePath="$PROJECT_DIR$/ImageMosaic.GUI/MainWindow.xaml.cs" afterPath="$PROJECT_DIR$/ImageMosaic.GUI/MainWindow.xaml.cs" />
+      <change beforePath="$PROJECT_DIR$/ImageMosaic.GUI/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/ImageMosaic.GUI/Properties/AssemblyInfo.cs" />
+      <change beforePath="$PROJECT_DIR$/ImageMosaic.ImageDownloader/ImagesDownloader.cs" afterPath="$PROJECT_DIR$/ImageMosaic.ImageDownloader/ImagesDownloader.cs" />
+      <change beforePath="$PROJECT_DIR$/ImageMosaic.ImageDownloader/Program.cs" afterPath="$PROJECT_DIR$/ImageMosaic.ImageDownloader/Program.cs" />
+      <change beforePath="$PROJECT_DIR$/ImageMosaic.ImageDownloader/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/ImageMosaic.ImageDownloader/Properties/AssemblyInfo.cs" />
+      <change beforePath="$PROJECT_DIR$/ImageMosaic.ImageProcessing/ColorComparer.cs" afterPath="$PROJECT_DIR$/ImageMosaic.ImageProcessing/ColorComparer.cs" />
+      <change beforePath="$PROJECT_DIR$/ImageMosaic.ImageProcessing/ImageProcessor.cs" afterPath="$PROJECT_DIR$/ImageMosaic.ImageProcessing/ImageProcessor.cs" />
+      <change beforePath="$PROJECT_DIR$/ImageMosaic.ImageProcessing/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/ImageMosaic.ImageProcessing/Properties/AssemblyInfo.cs" />
+      <change beforePath="$PROJECT_DIR$/ImageMosaic.ImageProcessing/ReferenceImagesParser.cs" afterPath="$PROJECT_DIR$/ImageMosaic.ImageProcessing/ReferenceImagesParser.cs" />
+      <change beforePath="$PROJECT_DIR$/ImageMosaic/ColorComparer.cs" afterPath="$PROJECT_DIR$/ImageMosaic/ColorComparer.cs" />
+      <change beforePath="$PROJECT_DIR$/ImageMosaic/ConcurrentImageTileModel.cs" afterPath="$PROJECT_DIR$/ImageMosaic/ConcurrentImageTileModel.cs" />
+      <change beforePath="$PROJECT_DIR$/ImageMosaic/ImageMosaic.csproj" afterPath="$PROJECT_DIR$/ImageMosaic/ImageMosaic.csproj" />
+      <change beforePath="$PROJECT_DIR$/ImageMosaic/MosaicGenerator.cs" afterPath="$PROJECT_DIR$/ImageMosaic/MosaicGenerator.cs" />
+      <change beforePath="$PROJECT_DIR$/ImageMosaic/MosaicGeneratorParalell.cs" afterPath="$PROJECT_DIR$/ImageMosaic/MosaicGeneratorParalell.cs" />
+      <change beforePath="$PROJECT_DIR$/ImageMosaic/Properties/AssemblyInfo.cs" afterPath="$PROJECT_DIR$/ImageMosaic/Properties/AssemblyInfo.cs" />
+      <change beforePath="$PROJECT_DIR$/ImageMosaic/obj/Debug/ImageMosaic.csproj.FileListAbsolute.txt" afterPath="$PROJECT_DIR$/ImageMosaic/obj/Debug/ImageMosaic.csproj.FileListAbsolute.txt" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="WorkerService.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ImageMosaic.DatabaseWorkerService/WorkerService.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="683">
+              <caret line="65" column="1" lean-forward="false" selection-start-line="65" selection-start-column="1" selection-end-line="65" selection-end-column="1" />
+              <folding>
+                <marker date="1523913066604" expanded="false" signature="6:119" ph="..." />
+                <marker date="1523913066604" expanded="true" signature="164:1813" ph="{...}" />
+                <marker date="1523913066604" expanded="true" signature="197:1811" ph="{...}" />
+                <marker date="1523913066604" expanded="true" signature="344:416" ph="{...}" />
+                <marker date="1523913066604" expanded="true" signature="443:1121" ph="{...}" />
+                <marker date="1523913066604" expanded="true" signature="478:1111" ph="{...}" />
+                <marker date="1523913066604" expanded="true" signature="647:713" ph="{...}" />
+                <marker date="1523913066604" expanded="true" signature="1178:1307" ph="{...}" />
+                <marker date="1523913066604" expanded="true" signature="1397:1805" ph="{...}" />
+                <marker date="1523913066604" expanded="true" signature="1423:1708" ph="{...}" />
+                <marker date="1523913066604" expanded="true" signature="1500:1604" ph="{...}" />
+                <marker date="1523913066604" expanded="true" signature="1740:1795" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ImageIOController.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ImageMosaic.DatabaseWorkerService/ImageIOController.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="585">
+              <caret line="39" column="13" lean-forward="false" selection-start-line="39" selection-start-column="13" selection-end-line="39" selection-end-column="13" />
+              <folding>
+                <marker date="1523913066626" expanded="true" signature="6:71" ph="..." />
+                <marker date="1523913066626" expanded="true" signature="116:1522" ph="{...}" />
+                <marker date="1523913066626" expanded="true" signature="153:1520" ph="{...}" />
+                <marker date="1523913066626" expanded="true" signature="262:386" ph="{...}" />
+                <marker date="1523913066626" expanded="true" signature="542:665" ph="{...}" />
+                <marker date="1523913066626" expanded="true" signature="717:1223" ph="{...}" />
+                <marker date="1523913066626" expanded="true" signature="743:1097" ph="{...}" />
+                <marker date="1523913066626" expanded="true" signature="917:986" ph="{...}" />
+                <marker date="1523913066626" expanded="true" signature="1127:1213" ph="{...}" />
+                <marker date="1523913066626" expanded="true" signature="1296:1514" ph="{...}" />
+                <marker date="1523913066626" expanded="true" signature="1322:1444" ph="{...}" />
+                <marker date="1523913066626" expanded="true" signature="1476:1504" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ImagesDownloader.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ImageMosaic.ImageDownloader/ImagesDownloader.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="690">
+              <caret line="46" column="31" lean-forward="false" selection-start-line="46" selection-start-column="31" selection-end-line="46" selection-end-column="31" />
+              <folding>
+                <marker date="1523913066622" expanded="true" signature="6:100" ph="..." />
+                <marker date="1523913066622" expanded="true" signature="145:1398" ph="{...}" />
+                <marker date="1523913066622" expanded="true" signature="181:1396" ph="{...}" />
+                <marker date="1523913066622" expanded="true" signature="303:398" ph="{...}" />
+                <marker date="1523913066622" expanded="true" signature="435:801" ph="{...}" />
+                <marker date="1523913066622" expanded="true" signature="461:733" ph="{...}" />
+                <marker date="1523913066622" expanded="true" signature="516:635" ph="{...}" />
+                <marker date="1523913066622" expanded="true" signature="763:791" ph="{...}" />
+                <marker date="1523913066622" expanded="true" signature="850:1390" ph="{...}" />
+                <marker date="1523913066622" expanded="true" signature="876:1293" ph="{...}" />
+                <marker date="1523913066622" expanded="true" signature="1325:1380" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MosaicGenerator.cs" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ImageMosaic/MosaicGenerator.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1074">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <marker date="1523913065119" expanded="true" signature="6:252" ph="..." />
+                <marker date="1523913065119" expanded="true" signature="275:5403" ph="{...}" />
+                <marker date="1523913065119" expanded="true" signature="310:5401" ph="{...}" />
+                <marker date="1523913065119" expanded="true" signature="834:1004" ph="{...}" />
+                <marker date="1523913065119" expanded="true" signature="1329:3619" ph="{...}" />
+                <marker date="1523913065119" expanded="true" signature="1383:1449" ph="{...}" />
+                <marker date="1523913065119" expanded="true" signature="1734:1803" ph="{...}" />
+                <marker date="1523913065119" expanded="true" signature="2543:3429" ph="{...}" />
+                <marker date="1523913065119" expanded="true" signature="2610:3415" ph="{...}" />
+                <marker date="1523913065119" expanded="true" signature="3138:3359" ph="{...}" />
+                <marker date="1523913065119" expanded="true" signature="3546:3609" ph="{...}" />
+                <marker date="1523913065119" expanded="true" signature="3629:3814" ph="/// returns the name of the image that matches with the given color ... " />
+                <marker date="1523913065119" expanded="true" signature="3868:4110" ph="{...}" />
+                <marker date="1523913065119" expanded="true" signature="4173:4829" ph="{...}" />
+                <marker date="1523913065119" expanded="true" signature="4438:4783" ph="{...}" />
+                <marker date="1523913065119" expanded="true" signature="4522:4769" ph="{...}" />
+                <marker date="1523913065119" expanded="true" signature="4915:5395" ph="{...}" />
+                <marker date="1523913065119" expanded="true" signature="5026:5195" ph="{...}" />
+                <marker date="1523913065119" expanded="true" signature="5101:5181" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/ImageMosaic.DatabaseWorkerService/WorkerService.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ImageMosaic.DatabaseWorkerService/ImageIOController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ImageMosaic/MosaicGenerator.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ImageMosaic.ImageDownloader/ImagesDownloader.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/ImageMosaic.DatabaseWorkerService/WorkerService.cs" />
+        <option value="$PROJECT_DIR$/ImageMosaic.ImageDownloader/ImagesDownloader.cs" />
+        <option value="$PROJECT_DIR$/ImageMosaic.DatabaseWorkerService/ImageIOController.cs" />
+        <option value="$PROJECT_DIR$/ImageMosaic/MosaicGenerator.cs" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="2576" />
+    <option name="height" value="1056" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="SolutionExplorer" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="SolutionExplorer">
+        <subPane>
+          <expand>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="ImageMosaic (6 projects)" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="ImageMosaic (6 projects)" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="ImageMosaic" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="ImageMosaic (6 projects)" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="ImageMosaic.DatabaseWorker" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="ImageMosaic (6 projects)" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="ImageMosaic.ImageDownloader" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+        <option name="show-file-system" value="false" />
+        <option name="show-all-items" value="false" />
+      </pane>
+      <pane id="Scratches" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="Default" type="DotNetProject" factoryName=".NET Project">
+      <option name="EXE_PATH" value="" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <envs />
+      <option name="USE_MONO" value="0" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="PROJECT_PATH" value="" />
+      <option name="PROJECT_EXE_PATH_TRACKING" value="1" />
+      <option name="PROJECT_ARGUMENTS_TRACKING" value="1" />
+      <option name="PROJECT_WORKING_DIRECTORY_TRACKING" value="1" />
+      <option name="PROJECT_KIND" value="None" />
+      <option name="PROJECT_TFM" value="" />
+    </configuration>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d824b4da-bd9b-4403-9c5d-eb5c6e3fbae6" name="Default" comment="" />
+      <created>1523912565395</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1523912565395</updated>
+      <workItem from="1523912567392" duration="498000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="498000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="0" width="1536" height="864" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Errors In Solution" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Unit Tests" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="WINDOWED" visible="true" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" x="92" y="92" width="1352" height="640" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="NuGet" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1953125" sideWeight="0.5" order="-1" side_tool="false" content_ui="combo" />
+      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/ImageMosaic.DatabaseWorkerService/WorkerService.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="683">
+          <caret line="65" column="1" lean-forward="false" selection-start-line="65" selection-start-column="1" selection-end-line="65" selection-end-column="1" />
+          <folding>
+            <marker date="1523913066604" expanded="false" signature="6:119" ph="..." />
+            <marker date="1523913066604" expanded="true" signature="164:1813" ph="{...}" />
+            <marker date="1523913066604" expanded="true" signature="197:1811" ph="{...}" />
+            <marker date="1523913066604" expanded="true" signature="344:416" ph="{...}" />
+            <marker date="1523913066604" expanded="true" signature="443:1121" ph="{...}" />
+            <marker date="1523913066604" expanded="true" signature="478:1111" ph="{...}" />
+            <marker date="1523913066604" expanded="true" signature="647:713" ph="{...}" />
+            <marker date="1523913066604" expanded="true" signature="1178:1307" ph="{...}" />
+            <marker date="1523913066604" expanded="true" signature="1397:1805" ph="{...}" />
+            <marker date="1523913066604" expanded="true" signature="1423:1708" ph="{...}" />
+            <marker date="1523913066604" expanded="true" signature="1500:1604" ph="{...}" />
+            <marker date="1523913066604" expanded="true" signature="1740:1795" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ImageMosaic.DatabaseWorkerService/ImageIOController.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="585">
+          <caret line="39" column="13" lean-forward="false" selection-start-line="39" selection-start-column="13" selection-end-line="39" selection-end-column="13" />
+          <folding>
+            <marker date="1523913066626" expanded="true" signature="6:71" ph="..." />
+            <marker date="1523913066626" expanded="true" signature="116:1522" ph="{...}" />
+            <marker date="1523913066626" expanded="true" signature="153:1520" ph="{...}" />
+            <marker date="1523913066626" expanded="true" signature="262:386" ph="{...}" />
+            <marker date="1523913066626" expanded="true" signature="542:665" ph="{...}" />
+            <marker date="1523913066626" expanded="true" signature="717:1223" ph="{...}" />
+            <marker date="1523913066626" expanded="true" signature="743:1097" ph="{...}" />
+            <marker date="1523913066626" expanded="true" signature="917:986" ph="{...}" />
+            <marker date="1523913066626" expanded="true" signature="1127:1213" ph="{...}" />
+            <marker date="1523913066626" expanded="true" signature="1296:1514" ph="{...}" />
+            <marker date="1523913066626" expanded="true" signature="1322:1444" ph="{...}" />
+            <marker date="1523913066626" expanded="true" signature="1476:1504" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ImageMosaic.ImageDownloader/ImagesDownloader.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="690">
+          <caret line="46" column="31" lean-forward="false" selection-start-line="46" selection-start-column="31" selection-end-line="46" selection-end-column="31" />
+          <folding>
+            <marker date="1523913066622" expanded="true" signature="6:100" ph="..." />
+            <marker date="1523913066622" expanded="true" signature="145:1398" ph="{...}" />
+            <marker date="1523913066622" expanded="true" signature="181:1396" ph="{...}" />
+            <marker date="1523913066622" expanded="true" signature="303:398" ph="{...}" />
+            <marker date="1523913066622" expanded="true" signature="435:801" ph="{...}" />
+            <marker date="1523913066622" expanded="true" signature="461:733" ph="{...}" />
+            <marker date="1523913066622" expanded="true" signature="516:635" ph="{...}" />
+            <marker date="1523913066622" expanded="true" signature="763:791" ph="{...}" />
+            <marker date="1523913066622" expanded="true" signature="850:1390" ph="{...}" />
+            <marker date="1523913066622" expanded="true" signature="876:1293" ph="{...}" />
+            <marker date="1523913066622" expanded="true" signature="1325:1380" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ImageMosaic/MosaicGenerator.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1074">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1523913065119" expanded="true" signature="6:252" ph="..." />
+            <marker date="1523913065119" expanded="true" signature="275:5403" ph="{...}" />
+            <marker date="1523913065119" expanded="true" signature="310:5401" ph="{...}" />
+            <marker date="1523913065119" expanded="true" signature="834:1004" ph="{...}" />
+            <marker date="1523913065119" expanded="true" signature="1329:3619" ph="{...}" />
+            <marker date="1523913065119" expanded="true" signature="1383:1449" ph="{...}" />
+            <marker date="1523913065119" expanded="true" signature="1734:1803" ph="{...}" />
+            <marker date="1523913065119" expanded="true" signature="2543:3429" ph="{...}" />
+            <marker date="1523913065119" expanded="true" signature="2610:3415" ph="{...}" />
+            <marker date="1523913065119" expanded="true" signature="3138:3359" ph="{...}" />
+            <marker date="1523913065119" expanded="true" signature="3546:3609" ph="{...}" />
+            <marker date="1523913065119" expanded="true" signature="3629:3814" ph="/// returns the name of the image that matches with the given color ... " />
+            <marker date="1523913065119" expanded="true" signature="3868:4110" ph="{...}" />
+            <marker date="1523913065119" expanded="true" signature="4173:4829" ph="{...}" />
+            <marker date="1523913065119" expanded="true" signature="4438:4783" ph="{...}" />
+            <marker date="1523913065119" expanded="true" signature="4522:4769" ph="{...}" />
+            <marker date="1523913065119" expanded="true" signature="4915:5395" ph="{...}" />
+            <marker date="1523913065119" expanded="true" signature="5026:5195" ph="{...}" />
+            <marker date="1523913065119" expanded="true" signature="5101:5181" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\jossanta\.Rider2017.3\system\resharper-host\local\Transient\ReSharperHost\v11\SolutionCaches\_ImageMosaic.1440304623.00" t="ExcludeRecursive" />
+    <e p="C:\Users\jossanta\Documents\Source\ImageMosaic" t="IncludeFlat">
+      <e p="ImageMosaic" t="IncludeRecursive">
+        <e p="App.config" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="ColorComparer.cs" t="Include" />
+        <e p="ConcurrentImageTileModel.cs" t="Include" />
+        <e p="ImageMosaic.csproj" t="IncludeRecursive" />
+        <e p="MosaicGenerator.cs" t="Include" />
+        <e p="MosaicGeneratorParalell.cs" t="Include" />
+        <e p="obj" t="ExcludeRecursive" />
+        <e p="Properties" t="Include">
+          <e p="AssemblyInfo.cs" t="Include" />
+        </e>
+      </e>
+      <e p="ImageMosaic.DatabaseWorkerService" t="IncludeRecursive">
+        <e p="App.config" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="ImageIOController.cs" t="Include" />
+        <e p="ImageMosaic.DatabaseWorker.csproj" t="IncludeRecursive" />
+        <e p="obj" t="ExcludeRecursive" />
+        <e p="Program.cs" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="AssemblyInfo.cs" t="Include" />
+        </e>
+        <e p="WorkerService.cs" t="Include" />
+      </e>
+      <e p="ImageMosaic.Domain.Model" t="IncludeRecursive">
+        <e p="App.config" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="ImageInfo.cs" t="Include" />
+        <e p="ImageMosaic.Domain.Model.csproj" t="IncludeRecursive" />
+        <e p="ImageMosaicContext.cs" t="Include" />
+        <e p="obj" t="ExcludeRecursive" />
+        <e p="packages.config" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="AssemblyInfo.cs" t="Include" />
+        </e>
+      </e>
+      <e p="ImageMosaic.GUI" t="IncludeRecursive">
+        <e p="App.config" t="Include" />
+        <e p="App.xaml" t="Include" />
+        <e p="App.xaml.cs" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="ImageMosaic.GUI.csproj" t="IncludeRecursive" />
+        <e p="MainWindow.xaml" t="Include" />
+        <e p="MainWindow.xaml.cs" t="Include" />
+        <e p="obj" t="ExcludeRecursive" />
+        <e p="Properties" t="Include">
+          <e p="AssemblyInfo.cs" t="Include" />
+          <e p="Resources.Designer.cs" t="Include" />
+          <e p="Resources.resx" t="Include" />
+          <e p="Settings.Designer.cs" t="Include" />
+          <e p="Settings.settings" t="Include" />
+        </e>
+      </e>
+      <e p="ImageMosaic.ImageDownloader" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="ImageMosaic.ImageDownloader.csproj" t="IncludeRecursive" />
+        <e p="ImagesDownloader.cs" t="Include" />
+        <e p="obj" t="ExcludeRecursive" />
+        <e p="Program.cs" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="AssemblyInfo.cs" t="Include" />
+        </e>
+      </e>
+      <e p="ImageMosaic.ImageProcessing" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="ColorComparer.cs" t="Include" />
+        <e p="ImageMosaic.ImageProcessing.csproj" t="IncludeRecursive" />
+        <e p="ImageProcessor.cs" t="Include" />
+        <e p="obj" t="ExcludeRecursive" />
+        <e p="Properties" t="Include">
+          <e p="AssemblyInfo.cs" t="Include" />
+        </e>
+        <e p="ReferenceImagesParser.cs" t="Include" />
+      </e>
+      <e p="ImageMosaic.sln" t="IncludeFlat" />
+      <e p="packages" t="ExcludeRecursive" />
+    </e>
+  </component>
+</project>

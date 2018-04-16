@@ -1,26 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Mime;
-using System.Text;
-using System.Threading.Tasks;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Drawing.Imaging;
-using System.Globalization;
-using System.Security.Principal;
 
 namespace ImageMosaic.ImageProcessing
 {
     public class ImageProcessor
     {
-        public Bitmap image { get; private set; }
-        private int squareTam;
+        private readonly int squaresHeight;
+        private readonly int squaresWidth;
+        private readonly int squareTam;
+        private readonly int tilesHeight;
 
-        private int tilesWidth;
-        private int tilesHeight;
-        private int squaresWidth;
-        private int squaresHeight;
-        
+        private readonly int tilesWidth;
+
         /// <summary>
         /// Process the image with a given tile size
         /// </summary>
@@ -30,8 +21,8 @@ namespace ImageMosaic.ImageProcessing
         {
             image = new Bitmap(Image.FromFile(imagePath));
             this.squareTam = squareTam;
-            tilesWidth = image.Width/squareTam;
-            tilesHeight = image.Height/squareTam;
+            tilesWidth = image.Width / squareTam;
+            tilesHeight = image.Height / squareTam;
             squaresWidth = squareTam;
             squaresHeight = squareTam;
         }
@@ -43,7 +34,7 @@ namespace ImageMosaic.ImageProcessing
         public ImageProcessor(string imagePath)
         {
             image = new Bitmap(Image.FromFile(imagePath));
-            this.squareTam = (image.Width < image.Height )? image.Width : image.Height;
+            squareTam = image.Width < image.Height ? image.Width : image.Height;
             tilesWidth = image.Width / squareTam;
             tilesHeight = image.Height / squareTam;
             squaresWidth = squareTam;
@@ -53,7 +44,7 @@ namespace ImageMosaic.ImageProcessing
         public ImageProcessor(Bitmap bitmap)
         {
             image = bitmap;
-            this.squareTam = (image.Width < image.Height) ? image.Width : image.Height;
+            squareTam = image.Width < image.Height ? image.Width : image.Height;
             tilesWidth = image.Width / squareTam;
             tilesHeight = image.Height / squareTam;
             squaresWidth = squareTam;
@@ -64,12 +55,14 @@ namespace ImageMosaic.ImageProcessing
         {
             image = bitmap;
             this.squareTam = squareTam;
-            this.squareTam = (image.Width < image.Height) ? image.Width : image.Height;
+            this.squareTam = image.Width < image.Height ? image.Width : image.Height;
             tilesWidth = image.Width / squareTam;
             tilesHeight = image.Height / squareTam;
             squaresWidth = squareTam;
             squaresHeight = squareTam;
         }
+
+        public Bitmap image {get;}
 
         /// <summary>
         /// Returns the dominant color of the image
@@ -86,19 +79,19 @@ namespace ImageMosaic.ImageProcessing
         /// <param name="path"></param>
         public void SaveHamaTemplate(string path)
         {
-            Bitmap exportImage = new Bitmap(this.image.Width, this.image.Height);
-            Graphics graphics = Graphics.FromImage(exportImage);
-            SolidBrush[,] brushes = _getBrushes(GetColorMatrix());
+            var exportImage = new Bitmap(image.Width, image.Height);
+            var graphics = Graphics.FromImage(exportImage);
+            var brushes = _getBrushes(GetColorMatrix());
 
-            for (int i = 0; i < tilesHeight; i++)
+            for (var i = 0; i < tilesHeight; i++)
             {
-                for (int j = 0; j < tilesWidth; j++)
+                for (var j = 0; j < tilesWidth; j++)
                 {
                     graphics.FillRectangle(new SolidBrush(Color.Black), j * squaresWidth, i * squaresHeight, squaresWidth, squaresHeight);
-                    graphics.FillRectangle(brushes[j, i], j * squaresWidth-3, i * squaresHeight-3, squaresWidth-3, squaresHeight-3);
+                    graphics.FillRectangle(brushes[j, i], j * squaresWidth - 3, i * squaresHeight - 3, squaresWidth - 3, squaresHeight - 3);
                 }
             }
-               
+
             exportImage.Save(path, ImageFormat.Png);
         }
 
@@ -108,11 +101,15 @@ namespace ImageMosaic.ImageProcessing
         /// <returns></returns>
         public Color[,] GetColorMatrix()
         {
-            Color[,] colorSquares = new Color[tilesWidth, tilesHeight];
+            var colorSquares = new Color[tilesWidth, tilesHeight];
 
-            for (int i = 0; i < tilesWidth - 1; i++)
-                for (int j = 0; j < tilesHeight-1; j++)
-                    colorSquares[i, j] = _processRegion(squaresWidth*i, squaresHeight*j, squaresWidth, squaresHeight);
+            for (var i = 0; i < tilesWidth - 1; i++)
+            {
+                for (var j = 0; j < tilesHeight - 1; j++)
+                {
+                    colorSquares[i, j] = _processRegion(squaresWidth * i, squaresHeight * j, squaresWidth, squaresHeight);
+                }
+            }
 
             return colorSquares;
         }
@@ -123,11 +120,15 @@ namespace ImageMosaic.ImageProcessing
         /// <returns></returns>
         public int[,] GetArgbMatrix()
         {
-            int[,] colorSquares = new int[tilesWidth, tilesHeight];
+            var colorSquares = new int[tilesWidth, tilesHeight];
 
-            for (int i = 0; i < tilesWidth - 1; i++)
-                for (int j = 0; j < tilesHeight - 1; j++)
+            for (var i = 0; i < tilesWidth - 1; i++)
+            {
+                for (var j = 0; j < tilesHeight - 1; j++)
+                {
                     colorSquares[i, j] = _processRegion(squaresWidth * i, squaresHeight * j, squaresWidth, squaresHeight).ToArgb();
+                }
+            }
 
             return colorSquares;
         }
@@ -144,21 +145,21 @@ namespace ImageMosaic.ImageProcessing
         /// <returns></returns>
         private Color _processRegion(int x, int y, int width, int height)
         {
-            uint uWidth = (uint)width;
-            uint uHeight = (uint)height;
-            uint pixelCount = uWidth * uHeight;
-            BitmapData srcData = image.LockBits(new Rectangle(0, 0, width, height), ImageLockMode.ReadOnly, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-            uint[] totals = new uint[] { 0, 0, 0 };
+            var uWidth = (uint)width;
+            var uHeight = (uint)height;
+            var pixelCount = uWidth * uHeight;
+            var srcData = image.LockBits(new Rectangle(0, 0, width, height), ImageLockMode.ReadOnly, PixelFormat.Format32bppArgb);
+            var totals = {0, 0, 0};
             unsafe
             {
-                uint* p = (uint*)(void*)srcData.Scan0;
+                var p = (uint*)(void*)srcData.Scan0;
 
                 uint idx = 0;
                 while (idx < (pixelCount & ~0xff))
                 {
                     uint sumRR00BB = 0;
                     uint sum00GG00 = 0;
-                    for (int j = 0; j < 0x100; j++)
+                    for (var j = 0; j < 0x100; j++)
                     {
                         sumRR00BB += p[idx] & 0xff00ff;
                         sum00GG00 += p[idx] & 0x00ff00;
@@ -187,16 +188,16 @@ namespace ImageMosaic.ImageProcessing
                 }
             }
 
-            uint avgB = totals[0] / (uWidth * uHeight);
-            uint avgG = totals[1] / (uWidth * uHeight);
-            uint avgR = totals[2] / (uWidth * uHeight);
+            var avgB = totals[0] / (uWidth * uHeight);
+            var avgG = totals[1] / (uWidth * uHeight);
+            var avgR = totals[2] / (uWidth * uHeight);
 
             image.UnlockBits(srcData);
 
             return Color.FromArgb((int)avgR, (int)avgG, (int)avgB);
         }
 
-       
+
         /// <summary>
         /// Gets a matrix of brushes to pain plain color in a image
         /// </summary>
@@ -204,16 +205,17 @@ namespace ImageMosaic.ImageProcessing
         /// <returns></returns>
         private SolidBrush[,] _getBrushes(Color[,] colors)
         {
-            SolidBrush[,] brushes = new SolidBrush[tilesWidth, tilesHeight];
+            var brushes = new SolidBrush[tilesWidth, tilesHeight];
 
-            for (int i = 0; i < tilesWidth; i++)
-                for (int j = 0; j < tilesHeight; j++)
+            for (var i = 0; i < tilesWidth; i++)
+            {
+                for (var j = 0; j < tilesHeight; j++)
+                {
                     brushes[i, j] = new SolidBrush(colors[i, j]);
+                }
+            }
 
             return brushes;
         }
-
-
-
     }
 }

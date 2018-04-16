@@ -1,18 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ImageMosaic.DatabaseWorkerService
 {
-    public class ImageIOController
+    public class ImageIoController
     {
-        private DirectoryInfo _imagesDirectory;
-        public string CurrentImagePath { get; set; }
-        public string ImageParsedPath { get; set; }
+        private readonly DirectoryInfo imagesDirectory;
+
+        public ImageIoController(string path)
+        {
+            imagesDirectory = new DirectoryInfo(path);
+            ImageParsedPath = $"{path}\\Parsed";
+        }
+
+        public string CurrentImagePath {get; set;}
+        public string ImageParsedPath {get; set;}
 
         public string GetNewPath(string currentPath)
         {
@@ -20,24 +24,21 @@ namespace ImageMosaic.DatabaseWorkerService
             return $"{ImageParsedPath}\\{guid}.png";
         }
 
-        public ImageIOController(string path)
-        {
-            this._imagesDirectory = new DirectoryInfo(path);
-            this.ImageParsedPath = $"{path}\\Parsed";
-        }
-
         public Image GetNextImage(out string path)
         {
             try
             {
-                var imagePath = _imagesDirectory.GetFiles().FirstOrDefault()?.FullName;
+                var imagePath = imagesDirectory.GetFiles().FirstOrDefault()?.FullName;
                 path = imagePath;
                 if (imagePath == null)
+                {
                     return null;
+                }
 
-                this.CurrentImagePath = imagePath;
+                CurrentImagePath = imagePath;
                 return Image.FromFile(imagePath);
-            }catch(Exception)
+            }
+            catch (Exception)
             {
                 path = null;
                 return null;
@@ -53,10 +54,7 @@ namespace ImageMosaic.DatabaseWorkerService
             }
             catch (Exception e)
             {
-
             }
         }
-
-
     }
 }

@@ -1,21 +1,16 @@
-﻿using MySql.Data.Entity;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data.Entity;
+using MySql.Data.Entity;
 
 namespace ImageMosaic.Domain.Model
 {
     [DbConfigurationType(typeof(MySqlEFConfiguration))]
-    public class ImageMosaicContext : DbContext 
+    public class ImageMosaicContext : DbContext
     {
-        public DbSet<ImageInfo> ImageInfo { get; set; }
-
-        public ImageMosaicContext() :base("ImageMosaic")
+        public ImageMosaicContext() : base("ImageMosaic")
         {
-            this.Database.CreateIfNotExists();
+            Database.CreateIfNotExists();
         }
+
+        public DbSet<ImageInfo> ImageInfo {get; set;}
     }
 }
